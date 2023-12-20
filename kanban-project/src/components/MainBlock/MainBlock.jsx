@@ -1,14 +1,15 @@
 import { statusList } from "../../data";
 import Column from "../Column/Column";
+import { Main, MainStyledBlock, MainContent } from "./MainBlock.styled.js";
 
 export default function MainBlock({ cards }) {
 
   return (
-    <main className="main">
+    <Main className="main">
       <div className="container">
-        <div className="main__block">
-          <div className="main__content">
-            <div className="main__content">
+        <MainStyledBlock className="main__block">
+          <MainContent className="main__content">
+            <MainContent className="main__content">
               {statusList.map((status) => (
                 <Column
                   key={status}
@@ -16,10 +17,10 @@ export default function MainBlock({ cards }) {
                   cardList={cards.filter((card) => card.status === status)} // сверяем свойство карточки статус со статусом
                 />
               ))}
-            </div>
-          </div>
-        </div>
+            </MainContent>
+          </MainContent>
+        </MainStyledBlock>
       </div>
-    </main>
+    </Main>
   );
 }
