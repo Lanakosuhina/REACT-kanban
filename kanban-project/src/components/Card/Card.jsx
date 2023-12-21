@@ -1,27 +1,52 @@
-import { CardButton, CardContent, CardDate, CardGroup, CardTheme, CardTitle, CardsCard, CardsItem } from './Card.styled';
+import {
+  CardButton,
+  CardContent,
+  CardDate,
+  CardGroup,
+  CardTheme,
+  ThemeP,
+  CardTitle,
+  CardsCard,
+  CardsItem,
+} from "./Card.styled";
 
 export default function Card({ theme, title, date }) {
+
+  let color;
+  switch (theme) {
+    case "Web Design":
+      color = "_orange";
+      break;
+    case "Copywriting":
+      color = "_purple";
+      break;
+    case "Research":
+      color = "_green";
+      break;
+    default:
+      color = "_gray";
+  }
   
   return (
-    <CardsItem className="cards__item">
-      <CardsCard className="cards__card card">
-        <CardGroup className="card__group">
-          <CardTheme className={"card__theme _green"}>
-            <p className="_green">{theme}</p>
+    <CardsItem>
+      <CardsCard className="card">
+        <CardGroup>
+          <CardTheme $themeColor={color}>
+            <ThemeP>{theme}</ThemeP>
           </CardTheme>
           <a href="#popBrowse" target="_self">
-            <CardButton className="card__btn">
+            <CardButton>
               <div></div>
               <div></div>
               <div></div>
             </CardButton>
           </a>
         </CardGroup>
-        <CardContent className="card__content">
+        <CardContent>
           <a href="" target="_blank">
-            <CardTitle className="card__title">{title}</CardTitle>
+            <CardTitle>{title}</CardTitle>
           </a>
-          <CardDate className="card__date">
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"

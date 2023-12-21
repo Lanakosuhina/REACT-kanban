@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { hover01, hover03 } from "../../Global.styled";
+import { breakpoints } from "../../lib/breakpoints";
+
 export const PopExitDiv = styled.div`
   display: none;
   width: 100%;
@@ -37,6 +40,10 @@ export const PopExitBlock = styled.div`
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    padding: 50px 20px;
+  }
 `;
 
 export const PopExitTtl = styled.div`
@@ -67,6 +74,15 @@ export const PopExitYes = styled.button`
   color: #ffffff;
   margin-right: 10px;
 
+  ${hover01}
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    width: 100%;
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
   a {
     width: 100%;
     height: 100%;
@@ -93,6 +109,13 @@ export const PopExitNo = styled.button`
   letter-spacing: -0.14px;
   color: #ffffff;
 
+  ${hover03}
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    width: 100%;
+    height: 40px;
+  }
+
   a {
     width: 100%;
     height: 100%;
@@ -108,4 +131,8 @@ export const PopExitFormGroup = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media only screen and (max-width: ${breakpoints.sm}px) {
+    display: block;
+  }
 `;

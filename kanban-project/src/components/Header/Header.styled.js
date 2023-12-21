@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.header`
   width: 100%;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 `;
 
 export const HeaderBlock = styled.div`
@@ -33,4 +33,3 @@ export const LogoDark = styled.div`
     display: none;
   }
 `;
-

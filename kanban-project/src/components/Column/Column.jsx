@@ -4,11 +4,11 @@ import { Cards, ColumnTitle, MainColumn } from "./Column.styled";
 
 export default function Column({ title, cardList }) {
   return (
-    <MainColumn className="main__column column">
-      <ColumnTitle className="column__title">
+    <MainColumn className="column">
+      <ColumnTitle>
         <p>{title}</p>
       </ColumnTitle>
-      <Cards className="cards">
+      <Cards>
         <div>
           {cardList.map((card) => (
             <Card

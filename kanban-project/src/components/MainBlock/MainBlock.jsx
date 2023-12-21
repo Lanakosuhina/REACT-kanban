@@ -3,13 +3,12 @@ import Column from "../Column/Column";
 import { Main, MainStyledBlock, MainContent } from "./MainBlock.styled.js";
 
 export default function MainBlock({ cards }) {
-
   return (
-    <Main className="main">
+    <Main>
       <div className="container">
-        <MainStyledBlock className="main__block">
-          <MainContent className="main__content">
-            <MainContent className="main__content">
+        <MainStyledBlock>
+          <MainContent>
+            <MainContent>
               {statusList.map((status) => (
                 <Column
                   key={status}

@@ -1,10 +1,17 @@
-_show что это за класс такой, которого нигде нет?
 
-нужно ли импортировать globalStyle в отдельные компоненты (календарь, например)?
 
-максимально не девелопер-френдли атмосфера...
+background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.backgroundColor || "#b4fdd1"};
 
-trouble-alarm!
-- нет paddingа между карточками
-- нет адаптива, куда он делся???
-- column в Column, where? 
+
+${ThemeP} {
+    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#06b16e"};
+  }
+
+  опциональный чейнинг
+
+https://learn.javascript.ru/optional-chaining
+https://react-day-picker.js.org/start
+
+https://sky.pro/media/kak-ispolzovat-css-moduli-dlya-stilizaczii-komponentov/
+https://tailwindcss.com/

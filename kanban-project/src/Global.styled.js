@@ -1,4 +1,31 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from "styled-components";
+import { breakpoints } from "../src/lib/breakpoints";
+
+export const hover01 = css`
+  &:hover {
+    background-color: #33399b;
+  }
+`;
+
+export const hover02 = css`
+  &:hover {
+    color: #33399b;
+    &::after {
+      border-left-color: #33399b;
+      border-bottom-color: #33399b;
+    }
+  }
+`;
+
+export const hover03 = css`
+  &:hover {
+    background-color: #33399b;
+    color: #ffffff;
+    a {
+      color: #ffffff;
+    }
+  }
+`;
 
 export const GlobalStyle = createGlobalStyle`
 * {
@@ -11,6 +38,28 @@ export const GlobalStyle = createGlobalStyle`
 *:after {
   box-sizing: border-box;
 }
+
+/* ._hover01:hover {
+  background-color: #33399b;
+}
+
+._hover02:hover {
+  color: #33399b;
+} */
+
+/* ._hover02:hover::after {
+  border-left-color: #33399b;
+  border-bottom-color: #33399b;
+} */
+
+/* ._hover03:hover {
+  background-color: #33399b;
+  color: #FFFFFF;
+}
+
+._hover03:hover a {
+  color: #FFFFFF;
+} */
 
 a,
 a:visited {
@@ -56,28 +105,12 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 0 30px;
-}
 
-._hover01:hover {
-  background-color: #33399b;
-}
+  @media screen and (max-width: ${breakpoints.md}px) {
+    width: 100%;
+    padding: 0 16px;
+  }
 
-._hover02:hover {
-  color: #33399b;
-}
-
-._hover02:hover::after {
-  border-left-color: #33399b;
-  border-bottom-color: #33399b;
-}
-
-._hover03:hover {
-  background-color: #33399b;
-  color: #FFFFFF;
-}
-
-._hover03:hover a {
-  color: #FFFFFF;
 }
 
 ._orange {
