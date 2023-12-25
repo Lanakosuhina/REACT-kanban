@@ -1,4 +1,5 @@
 import "./App.css";
+import { GlobalStyle } from './Global.styled.js';
 import loadingGif from "./assets/Gif.gif"
 import PopExit from "./components/PopExit/PopExit.jsx";
 import PopNewCard from "./components/PopNewCard/PopNewCard.jsx";
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <>
+    <GlobalStyle />
       <div className="wrapper">
         <PopExit />
         <PopNewCard />

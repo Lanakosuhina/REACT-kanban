@@ -1,0 +1,17 @@
+
+
+background-color: ${({ $themeColor }) =>
+    themeStyles[$themeColor]?.backgroundColor || "#b4fdd1"};
+
+
+${ThemeP} {
+    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#06b16e"};
+  }
+
+  опциональный чейнинг
+
+https://learn.javascript.ru/optional-chaining
+https://react-day-picker.js.org/start
+
+https://sky.pro/media/kak-ispolzovat-css-moduli-dlya-stilizaczii-komponentov/
+https://tailwindcss.com/
