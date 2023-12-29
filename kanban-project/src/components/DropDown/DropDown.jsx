@@ -9,6 +9,8 @@ import {
   PopUserSetName,
   PopUserSetTheme,
 } from "./DropDown.styled.js";
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../data.js";
 
 export default function DropDown({ addCards }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,17 +22,14 @@ export default function DropDown({ addCards }) {
     <HeaderNav>
       <HeaderBtnMainNew onClick={addCards}>
         <a onClick={addCards}>Создать новую задачу</a>{" "}
-        {/* href="#popNewCard" */}
       </HeaderBtnMainNew>
       <HeaderUser
         onClick={toggleDropdown}
-        // href="#user-set-target"
       >
         Ivan Ivanov
       </HeaderUser>
       {isOpen && (
         <HeaderPopUserSet className="pop-user-set" id="user-set-target">
-          {/* <a href="">x</a> */}
           <PopUserSetName>Ivan Ivanov</PopUserSetName>
           <PopUserSetMail>ivan.ivanov@gmail.com</PopUserSetMail>
           <PopUserSetTheme>
@@ -38,7 +37,7 @@ export default function DropDown({ addCards }) {
             <input type="checkbox" className="checkbox" name="checkbox" />
           </PopUserSetTheme>
           <button type="button">
-            <a href="#popExit">Выйти</a>
+          <Link to={AppRoutes.EXIT}>Выйти</Link>
           </button>
         </HeaderPopUserSet>
       )}
