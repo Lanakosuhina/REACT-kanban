@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../data";
 import {
   CardButton,
   CardContent,
@@ -34,18 +36,16 @@ export default function Card({ theme, title, date }) {
           <CardTheme $themeColor={color}>
             <ThemeP>{theme}</ThemeP>
           </CardTheme>
-          <a href="#popBrowse" target="_self">
+          <Link to={AppRoutes.CARD}>
             <CardButton>
               <div></div>
               <div></div>
               <div></div>
             </CardButton>
-          </a>
+          </Link>
         </CardGroup>
         <CardContent>
-          <a href="" target="_blank">
             <CardTitle>{title}</CardTitle>
-          </a>
           <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"

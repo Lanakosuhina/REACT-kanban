@@ -39,27 +39,6 @@ export const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-/* ._hover01:hover {
-  background-color: #33399b;
-}
-
-._hover02:hover {
-  color: #33399b;
-} */
-
-/* ._hover02:hover::after {
-  border-left-color: #33399b;
-  border-bottom-color: #33399b;
-} */
-
-/* ._hover03:hover {
-  background-color: #33399b;
-  color: #FFFFFF;
-}
-
-._hover03:hover a {
-  color: #FFFFFF;
-} */
 
 a,
 a:visited {
@@ -89,7 +68,7 @@ body {
   font-family: Helvetica, sans-serif;
   color: #000;
   text-align: center;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 .wrapper {
