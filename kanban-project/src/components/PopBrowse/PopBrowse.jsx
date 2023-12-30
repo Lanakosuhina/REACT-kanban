@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../data";
 import Calendar from "../Calendar/Calendar";
 export default function PopBrowse() {
   return (
@@ -73,8 +75,7 @@ export default function PopBrowse() {
                 </button>
               </div>
               <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
+              <Link to={AppRoutes.MAIN}>Закрыть</Link>              </button>
             </div>
             <div className="pop-browse__btn-edit _hide">
               <div className="btn-group">
@@ -92,8 +93,7 @@ export default function PopBrowse() {
                 </button>
               </div>
               <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
-              </button>
+              <Link to={AppRoutes.MAIN}>Закрыть</Link>              </button>
             </div>
           </div>
         </div>
