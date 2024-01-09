@@ -1,6 +1,6 @@
 import { GlobalStyle } from '../Global.styled.js';
 import loadingGif from "../assets/christmas-hello.gif"
-import PopExit from "../components/PopExit/PopExit.jsx";
+// import PopExit from "../components/PopExit/PopExit.jsx";
 import PopNewCard from "../components/PopNewCard/PopNewCard.jsx";
 import PopBrowse from "../components/PopBrowse/PopBrowse.jsx";
 import Header from "../components/Header/Header.jsx";
@@ -34,9 +34,9 @@ export default function MainPage() {
     <>
     <GlobalStyle />
       <div className="wrapper">
-        <PopExit />
+        {/* <PopExit /> */}
         <PopNewCard />
-        <PopBrowse />
+        {/* <PopBrowse /> */}
         <Header addCards={addCards} />
         {isLoading ? (
           <div className="loader"><img src={loadingGif} alt="wait until the page loads" /></div>
