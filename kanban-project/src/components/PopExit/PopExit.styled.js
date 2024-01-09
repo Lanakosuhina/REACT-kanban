@@ -4,7 +4,7 @@ import { hover01, hover03 } from "../../Global.styled";
 import { breakpoints } from "../../lib/breakpoints";
 
 export const PopExitDiv = styled.div`
-  display: none;
+  /* display: none; */
   width: 100%;
   height: 100%;
   min-width: 320px;
