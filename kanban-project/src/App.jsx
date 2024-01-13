@@ -10,7 +10,7 @@ import { AppRoutes } from "./data";
 import NotFoundPage from "./pages/NotFoundResource/NotFoundPage.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import { useState } from "react";
-import { loginKanban} from "./API.js";
+import { loginKanban, registerKanban } from "./API.js";
 
 function App() {
   const navigate = useNavigate();
@@ -24,13 +24,13 @@ function App() {
     })
   }
 
-  // async function setRegister(registerData) {
-  //   await registerKanban(registerData).then((data) => {
-  //     localStorage.setItem('user', JSON.stringify(data.user)) 
-  //     setUser(JSON.parse(localStorage.getItem("user")))
-  //     navigate(AppRoutes.LOGIN) 
-  //   })
-  // }
+  async function setRegister(registerData) {
+    await registerKanban(registerData).then((data) => {
+      localStorage.setItem('user', JSON.stringify(data.user)) 
+      setUser(JSON.parse(localStorage.getItem("user")))
+      navigate(AppRoutes.LOGIN) 
+    })
+  }
 
   function exit() {
     localStorage.removeItem('user');
@@ -48,7 +48,7 @@ function App() {
         </PrivateRoute>
       }
     />
-    <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
+    <Route path={AppRoutes.REGISTER} element={<RegisterPage setRegister={setRegister} />} />
     <Route path={AppRoutes.LOGIN} element={<LoginPage setAuth={setAuth} />} />
     <Route
       path={AppRoutes.CARD}
