@@ -81,7 +81,7 @@ export default function PopBrowse() {
                 <Link to={AppRoutes.MAIN}>Закрыть</Link>
               </button>
             </div>
-            {/* <div className="pop-browse__btn-edit _hide">
+            <div className="pop-browse__btn-edit _hide">
               <div className="btn-group">
                 <button className="btn-edit__edit _btn-bg _hover01">
                   <a href="#">Сохранить</a>
@@ -99,7 +99,7 @@ export default function PopBrowse() {
               <button className="btn-edit__close _btn-bg _hover01">
                 <Link to={AppRoutes.MAIN}>Закрыть</Link>
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

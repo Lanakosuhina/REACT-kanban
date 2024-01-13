@@ -1,8 +1,34 @@
 import "../signup.css";
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../data";
+import { useState } from "react";
 
-export default function RegisterPage() {
+export default function RegisterPage({ setRegister }) {
+  const [registerData, setRegisterData] = useState({
+    name: "",
+    login: "",
+    password: "",
+  });
+
+  function handleInputChange(source, value) {
+    setRegisterData({
+      ...registerData,
+      [source]: value,
+    });
+  }
+
+  function onNameChange(event) {
+    handleInputChange("name", event.target.value);
+  }
+
+  function onLoginChange(event) {
+    handleInputChange("login", event.target.value);
+  }
+
+  function onPasswordChange(event) {
+    handleInputChange("password", event.target.value);
+  }
+
   return (
     <>
       <div className="wrapper">
@@ -19,13 +45,17 @@ export default function RegisterPage() {
                   name="first-name"
                   id="first-name"
                   placeholder="Имя"
+                  value={registerData.name}
+                  onChange={onNameChange}
                 />
                 <input
                   className="modal__input login"
                   type="text"
                   name="login"
                   id="loginReg"
-                  placeholder="Эл. почта"
+                  placeholder="Логин"
+                  value={registerData.login}
+                  onChange={onLoginChange}
                 />
                 <input
                   className="modal__input password-first"
@@ -33,16 +63,23 @@ export default function RegisterPage() {
                   name="password"
                   id="passwordFirst"
                   placeholder="Пароль"
+                  value={registerData.password}
+                  onChange={onPasswordChange}
                 />
                 <button
                   className="modal__btn-signup-ent _hover01"
                   id="SignUpEnter"
+                  onClick={(event) => {
+                  event.preventDefault();
+                  setRegister(registerData)
+                }}
                 >
-                  <Link to={AppRoutes.MAIN}>Зарегистрироваться</Link>
+                Зарегистрироваться
                 </button>
                 <div className="modal__form-group">
                   <p>
-                    Уже есть аккаунт? <Link to={AppRoutes.LOGIN}>Войдите здесь</Link>{" "}
+                    Уже есть аккаунт?
+                    <Link to={AppRoutes.LOGIN}>Войдите здесь</Link>{" "}
                   </p>
                 </div>
               </form>

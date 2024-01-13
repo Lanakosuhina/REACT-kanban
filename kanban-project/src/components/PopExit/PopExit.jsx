@@ -10,7 +10,7 @@ import {
 } from "./PopExit.styled.js";
 import { Link } from "react-router-dom";
 
-export default function PopExit() {
+export default function PopExit({ exit }) {
   return (
     <PopExitDiv id="popExit">
       <PopExitContainer>
@@ -20,11 +20,17 @@ export default function PopExit() {
           </PopExitTtl>
           <form className="pop-exit__form" id="formExit" action="#">
             <PopExitFormGroup>
-              <PopExitYes id="exitYes">
-                <Link to={AppRoutes.LOGIN}>Да, выйти</Link>
+              <PopExitYes
+                id="exitYes"
+                onClick={(event) => {
+                  event.preventDefault();
+                  exit();
+                }}
+              >
+                Да, выйти
               </PopExitYes>
               <PopExitNo id="exitNo">
-              <Link to={AppRoutes.MAIN}>Нет, остаться</Link>
+                <Link to={AppRoutes.MAIN}>Нет, остаться</Link>
               </PopExitNo>
             </PopExitFormGroup>
           </form>

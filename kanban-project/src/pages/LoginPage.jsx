@@ -1,8 +1,28 @@
 import { Link } from "react-router-dom";
 import "../signin.css";
 import { AppRoutes } from "../data";
+import { useState } from "react";
 
-export default function LoginPage() {
+export default function LoginPage({ setAuth }) {
+  const [loginData, setLoginData] = useState({
+    login: "",
+    password: "",
+  });
+
+  function handleInputChange(source, value) {
+    setLoginData({
+      ...loginData,
+      [source]: value,
+    });
+  }
+
+  function onLoginChange(event) {
+    handleInputChange("login", event.target.value);
+  }
+  function onPasswordChange(event) {
+    handleInputChange("password", event.target.value);
+  }
+
   return (
     <>
       <div className="wrapper">
@@ -18,7 +38,9 @@ export default function LoginPage() {
                   type="text"
                   name="login"
                   id="formlogin"
-                  placeholder="Эл. почта"
+                  placeholder="Логин"
+                  value={loginData.login}
+                  onChange={onLoginChange}
                 />
                 <input
                   className="modal__input"
@@ -26,9 +48,18 @@ export default function LoginPage() {
                   name="password"
                   id="formpassword"
                   placeholder="Пароль"
+                  value={loginData.password}
+                  onChange={onPasswordChange}
                 />
-                <button className="modal__btn-enter _hover01" id="btnEnter">
-                  <Link to="/">Войти</Link>
+                <button
+                  className="modal__btn-enter _hover01"
+                  id="btnEnter"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    setAuth(loginData)
+                  }}
+                >
+                  Войти
                 </button>
                 <div className="modal__form-group">
                   <p>Нужно зарегистрироваться?</p>

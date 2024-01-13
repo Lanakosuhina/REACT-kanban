@@ -12,9 +12,9 @@ import {
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../../data";
 
-export default function Card({ theme, title, date }) {
+export default function Card({ topic, title, date }) {
   let color;
-  switch (theme) {
+  switch (topic) {
     case "Web Design":
       color = "_orange";
       break;
@@ -30,24 +30,21 @@ export default function Card({ theme, title, date }) {
 
   return (
     <CardsItem>
-      <Link to={AppRoutes.CARD}>
       <CardsCard className="card">
         <CardGroup>
           <CardTheme $themeColor={color}>
-            <ThemeP>{theme}</ThemeP>
+            <ThemeP>{topic}</ThemeP>
           </CardTheme>
-         
-            {" "}
-            <CardButton>
-              <div></div>
-              <div></div>
-              <div></div>
-            </CardButton>
+          <CardButton>
+            <div></div>
+            <div></div>
+            <div></div>
+          </CardButton>
         </CardGroup>
         <CardContent>
-          <a href="" target="_blank">
+          <Link to={AppRoutes.CARD}>
             <CardTitle>{title}</CardTitle>
-          </a>
+          </Link>
           <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +78,6 @@ export default function Card({ theme, title, date }) {
           </CardDate>
         </CardContent>
       </CardsCard>
-    </Link>
     </CardsItem>
   );
 }
