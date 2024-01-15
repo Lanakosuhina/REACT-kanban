@@ -14,60 +14,63 @@ import { loginKanban, registerKanban } from "./API.js";
 
 function App() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 
-  async function setAuth(loginData) {
-    await loginKanban(loginData).then((data) => {
-      localStorage.setItem('user', JSON.stringify(data.user)) //сохранятем данные, которые пришли с сервера
-      setUser(JSON.parse(localStorage.getItem("user"))) // получаем данные из хранилища
-      navigate(AppRoutes.MAIN) 
-    })
+  function setAuth(loginData) {
+    loginKanban(loginData).then((data) => {
+      localStorage.setItem("user", JSON.stringify(data.user)); //сохранятем данные, которые пришли с сервера
+      setUser(JSON.parse(localStorage.getItem("user"))); // получаем данные из хранилища
+      navigate(AppRoutes.MAIN);
+    });
   }
 
-  async function setRegister(registerData) {
-    await registerKanban(registerData).then((data) => {
-      localStorage.setItem('user', JSON.stringify(data.user)) 
-      setUser(JSON.parse(localStorage.getItem("user")))
-      navigate(AppRoutes.LOGIN) 
-    })
+  function setRegister(registerData) {
+    registerKanban(registerData).then((data) => {
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(JSON.parse(localStorage.getItem("user")));
+      navigate(AppRoutes.LOGIN);
+    });
   }
 
   function exit() {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     setUser(null);
     navigate(AppRoutes.LOGIN);
   }
 
   return (
     <Routes>
-    <Route
-      path={AppRoutes.MAIN}
-      element={
-        <PrivateRoute isAuth={user}>
-          <MainPage />
-        </PrivateRoute>
-      }
-    />
-    <Route path={AppRoutes.REGISTER} element={<RegisterPage setRegister={setRegister} />} />
-    <Route path={AppRoutes.LOGIN} element={<LoginPage setAuth={setAuth} />} />
-    <Route
-      path={AppRoutes.CARD}
-      element={
-        <PrivateRoute isAuth={user}>
-          <OneCardPage />
-        </PrivateRoute>
-      }
-    />
-    <Route
-      path={AppRoutes.EXIT}
-      element={
-        <PrivateRoute isAuth={user}>
-          <ExitPage exit={exit}/>
-        </PrivateRoute>
-      }
-    />
-    <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
-  </Routes>
+      <Route
+        path={AppRoutes.MAIN}
+        element={
+          <PrivateRoute isAuth={user}>
+            <MainPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={AppRoutes.REGISTER}
+        element={<RegisterPage setRegister={setRegister} />}
+      />
+      <Route path={AppRoutes.LOGIN} element={<LoginPage setAuth={setAuth} />} />
+      <Route
+        path={AppRoutes.CARD}
+        element={
+          <PrivateRoute isAuth={user}>
+            <OneCardPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path={AppRoutes.EXIT}
+        element={
+          <PrivateRoute isAuth={user}>
+            <ExitPage exit={exit} />
+          </PrivateRoute>
+        }
+      />
+      <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
