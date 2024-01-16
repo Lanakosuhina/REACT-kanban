@@ -9,11 +9,12 @@ import {
   CardsCard,
   CardsItem,
 } from "./Card.styled";
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../data";
 
-export default function Card({ theme, title, date }) {
-
+export default function Card({ topic, title, date }) {
   let color;
-  switch (theme) {
+  switch (topic) {
     case "Web Design":
       color = "_orange";
       break;
@@ -26,26 +27,24 @@ export default function Card({ theme, title, date }) {
     default:
       color = "_gray";
   }
-  
+
   return (
     <CardsItem>
       <CardsCard className="card">
         <CardGroup>
           <CardTheme $themeColor={color}>
-            <ThemeP>{theme}</ThemeP>
+            <ThemeP>{topic}</ThemeP>
           </CardTheme>
-          <a href="#popBrowse" target="_self">
-            <CardButton>
-              <div></div>
-              <div></div>
-              <div></div>
-            </CardButton>
-          </a>
+          <CardButton>
+            <div></div>
+            <div></div>
+            <div></div>
+          </CardButton>
         </CardGroup>
         <CardContent>
-          <a href="" target="_blank">
+          <Link to={AppRoutes.CARD}>
             <CardTitle>{title}</CardTitle>
-          </a>
+          </Link>
           <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"

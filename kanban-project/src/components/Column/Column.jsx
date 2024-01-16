@@ -9,17 +9,16 @@ export default function Column({ title, cardList }) {
         <p>{title}</p>
       </ColumnTitle>
       <Cards>
-        <div>
-          {cardList.map((card) => (
+      {cardList.map((card) => (
+        <div key={card._id}>
             <Card
-              key={card.id}
-              theme={card.theme}
+              topic={card.topic}
               title={card.title}
               date={card.date}
               status={card.status}
             />
-          ))}
         </div>
+        ))}
       </Cards>
     </MainColumn>
   );

@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
+import { AppRoutes } from "../../data";
 import Calendar from "../Calendar/Calendar";
+import { GlobalStyle } from "../../Global.styled";
 export default function PopBrowse() {
   return (
+    <>
+    <GlobalStyle />
     <div className="pop-browse" id="popBrowse">
       <div className="pop-browse__container">
         <div className="pop-browse__block">
@@ -73,7 +78,7 @@ export default function PopBrowse() {
                 </button>
               </div>
               <button className="btn-browse__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+                <Link to={AppRoutes.MAIN}>Закрыть</Link>
               </button>
             </div>
             <div className="pop-browse__btn-edit _hide">
@@ -92,12 +97,13 @@ export default function PopBrowse() {
                 </button>
               </div>
               <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+                <Link to={AppRoutes.MAIN}>Закрыть</Link>
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
