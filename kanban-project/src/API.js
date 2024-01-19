@@ -3,9 +3,10 @@ export let token;
 const API_URL = "https://wedev-api.sky.pro/api/kanban";
 const API_URL_USER = "https://wedev-api.sky.pro/api/user";
 
-export async function getKanban() {
-  const userData = JSON.parse(localStorage.getItem("user"));
-  token = userData.token;
+export async function getKanban({ user }) {
+  // берем юзера из контекста, но как он понимает, что мы обращаемся к юзеру именно из контекст
+  // или, получается, там где вызывается getKanban мы обращаемся к useUser и именно там он и понимает это
+  token = user.token;
 
   const response = await fetch(API_URL, {
     headers: {

@@ -1,6 +1,6 @@
 import "../signup.css";
 import { Link } from "react-router-dom";
-import { AppRoutes } from "../data";
+import { AppRoutes } from "../lib/approutes";
 import { useState } from "react";
 
 export default function RegisterPage({ setRegister }) {

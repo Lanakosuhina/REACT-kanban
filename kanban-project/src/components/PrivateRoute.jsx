@@ -1,7 +1,9 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate } from "react-router-dom";
+import useUser from "../hooks/useUser";
 
-function PrivateRoute({ children, isAuth }) {
-  return isAuth ? children : <Navigate to="/login" />;
+function PrivateRoute({ children }) {
+  const { user } = useUser(); // получаем данные из контекта
+  return user ? children : <Navigate to="/login" />;
 }
 
 export default PrivateRoute;

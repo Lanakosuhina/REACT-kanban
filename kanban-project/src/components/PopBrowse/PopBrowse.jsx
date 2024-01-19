@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { AppRoutes } from "../../data";
+import { AppRoutes } from "../../lib/approutes";
 import Calendar from "../Calendar/Calendar";
 import { GlobalStyle } from "../../Global.styled";
 export default function PopBrowse() {

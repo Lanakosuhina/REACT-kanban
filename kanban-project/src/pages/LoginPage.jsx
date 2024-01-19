@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import "../signin.css";
-import { AppRoutes } from "../data";
+import { AppRoutes } from "../lib/approutes";
 import { useState } from "react";
+import { loginKanban } from "../API";
+import useUser from "../hooks/useUser";
 
-export default function LoginPage({ setAuth }) {
+export default function LoginPage() {
+  const { login } = useUser();
   const [loginData, setLoginData] = useState({
     login: "",
     password: "",
   });
+
+  function setAuth(loginData) {
+    loginKanban(loginData).then((data) => {
+      login(data.user)
+    });
+  }
 
   function handleInputChange(source, value) {
     setLoginData({
@@ -56,7 +65,7 @@ export default function LoginPage({ setAuth }) {
                   id="btnEnter"
                   onClick={(event) => {
                     event.preventDefault();
-                    setAuth(loginData)
+                    setAuth(loginData);
                   }}
                 >
                   Войти

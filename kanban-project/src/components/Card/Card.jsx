@@ -10,7 +10,7 @@ import {
   CardsItem,
 } from "./Card.styled";
 import { Link } from "react-router-dom";
-import { AppRoutes } from "../../data";
+import { AppRoutes } from "../../lib/approutes";
 
 export default function Card({ topic, title, date }) {
   let color;
