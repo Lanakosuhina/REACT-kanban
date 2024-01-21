@@ -11,30 +11,6 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import AddCardPage from "./pages/AddCardPage.jsx";
 
 function App() {
-  // const navigate = useNavigate();
-  // const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-
-  // function setAuth(loginData) {
-  //   loginKanban(loginData).then((data) => {
-  //     localStorage.setItem("user", JSON.stringify(data.user)); //сохранятем данные, которые пришли с сервера
-  //     setUser(JSON.parse(localStorage.getItem("user"))); // получаем данные из хранилища
-  //     navigate(AppRoutes.MAIN);
-  //   });
-  // }
-
-  // function setRegister(registerData) {
-  //   registerKanban(registerData).then((data) => {
-  //     localStorage.setItem("user", JSON.stringify(data.user));
-  //     setUser(JSON.parse(localStorage.getItem("user")));
-  //     navigate(AppRoutes.LOGIN);
-  //   });
-  // }
-
-  // function exit() {
-  //   localStorage.removeItem("user");
-  //   setUser(null);
-  //   navigate(AppRoutes.LOGIN);
-  // }
 
   return (
     <Routes>

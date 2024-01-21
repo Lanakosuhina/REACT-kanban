@@ -11,6 +11,7 @@ import {
 } from "./Card.styled";
 import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/approutes";
+import { format } from 'date-fns'
 
 export default function Card({ topic, title, date }) {
   let color;
@@ -74,7 +75,7 @@ export default function Card({ topic, title, date }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
+            <p>{format(date, 'dd.MM.yy')}</p>
           </CardDate>
         </CardContent>
       </CardsCard>

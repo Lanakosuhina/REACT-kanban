@@ -16,19 +16,23 @@ export async function getKanban({ user }) {
   if (response.status !== 200) {
     throw new Error("Нет авторизации");
   } else {
-  const data = await response.json();
-  return data; 
+    const data = await response.json();
+    return data;
   }
 }
 
-export async function postKanban(text) {
+export async function addTask ({ title, topic, status, description, date }) {
   const response = await fetch(API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
     method: "POST",
     body: JSON.stringify({
-      text,
+      title,
+      topic,
+      status,
+      description,
+      date,
     }),
   });
 
@@ -57,19 +61,35 @@ export async function loginKanban({ login, password }) {
 }
 
 export async function registerKanban({ login, name, password }) {
-    const response = await fetch(API_URL_USER, {
-      method: "POST",
-      body: JSON.stringify({
-        login,
-        name,
-        password,
-      }),
-    });
-   
-    if (response.status === 400) {
-      throw new Error("Попробуйте снова");
-    } else {
-      const data = await response.json();
-      return data;
-    }
+  const response = await fetch(API_URL_USER, {
+    method: "POST",
+    body: JSON.stringify({
+      login,
+      name,
+      password,
+    }),
+  });
+
+  if (response.status === 400) {
+    throw new Error("Попробуйте снова");
+  } else {
+    const data = await response.json();
+    return data;
+  }
+}
+
+export async function deleteTask(id) {
+  const response = await fetch(API_URL + "/" + id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  if (response.status === 201) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error("Не удалось удалить задачу, попробуйте снова");
+  }
 }

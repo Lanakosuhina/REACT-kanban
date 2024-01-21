@@ -1,14 +1,23 @@
 import "../signup.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../lib/approutes";
 import { useState } from "react";
+import { registerKanban } from "../API";
 
-export default function RegisterPage({ setRegister }) {
+export default function RegisterPage() {
+  const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
     name: "",
     login: "",
     password: "",
   });
+
+  function setReg(registerData) {
+      registerKanban(registerData).then(() => {
+        navigate(AppRoutes.LOGIN);
+      });
+    }
+  
 
   function handleInputChange(source, value) {
     setRegisterData({
@@ -71,7 +80,7 @@ export default function RegisterPage({ setRegister }) {
                   id="SignUpEnter"
                   onClick={(event) => {
                   event.preventDefault();
-                  setRegister(registerData)
+                  setReg(registerData)
                 }}
                 >
                 Зарегистрироваться

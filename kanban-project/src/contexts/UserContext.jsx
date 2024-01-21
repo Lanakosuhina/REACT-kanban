@@ -24,11 +24,4 @@ export function UserProvider({children}) {
   // передаем в качестве пропсов, потом сможем использовать в других компонентах
   // избегаем props drilling
 
-  // const user = useContext(UserContext);
-
-  // if (!user) {
-  //   throw new Error("Данные пользователя не были найдены");
-  // }
-
-  // return user;
 }
