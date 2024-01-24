@@ -5,9 +5,8 @@ import { AppRoutes } from "../lib/approutes";
 export const TaskContext = createContext(null);
 
 export function TaskProvider({ children }) {
-  const [tasks, setTasks] = useState();
+  const [tasks, setTasks] = useState(null);
   const navigate = useNavigate();
-
 
   function createTask( data ) {
     setTasks(data.tasks);
@@ -15,6 +14,8 @@ export function TaskProvider({ children }) {
   }
 
   return (
-    <TaskContext.Provider value={{ tasks, createTask }}>{children}</TaskContext.Provider>
+    <TaskContext.Provider value={{ tasks, createTask }}>
+      {children}
+    </TaskContext.Provider>
   );
 }

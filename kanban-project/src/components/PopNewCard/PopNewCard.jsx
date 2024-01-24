@@ -16,15 +16,19 @@ export default function PopNewCard() {
   });
 
   function onBtnSubmit() {
-    const cardData = {
-      ...newCard,
-      data: selected,
-    };
+    try {
+      const cardData = {
+        ...newCard,
+        data: selected,
+      };
 
-    addTask(cardData).then((data) => {
-      setNewCard(data)
-      navigate(AppRoutes.MAIN);
-    });
+      addTask(cardData).then((data) => {
+        setNewCard(data);
+        navigate(AppRoutes.MAIN);
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   return (

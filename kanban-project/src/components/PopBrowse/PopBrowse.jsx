@@ -2,15 +2,25 @@ import { Link } from "react-router-dom";
 import { AppRoutes } from "../../lib/approutes";
 import Calendar from "../Calendar/Calendar";
 import { GlobalStyle } from "../../Global.styled";
-// import useTasks from "../../hooks/useTasks.jsx";
+import useTasks from "../../hooks/useTasks";
+import { deleteTask } from "../../API";
 
-export default function PopBrowse({ taskId }) {
-  // const { tasks } = useTasks();
+export default function PopBrowse({ id }) {
+  const { tasks, createTask } = useTasks();
+// 2 страница 23 = 13
+// 33 номер 1 = 25
 
-  function handleDelete() {
-    console.log(taskId);
+  async function handleDelete() {
+    try {
+      await deleteTask(id);
+      const updatedtasks = tasks.filter(task => task._id !== id);
+      createTask(updatedtasks);
+    } catch (error) {
+     alert(error.message)
+    }
   }
   
+
   return (
     <>
       <GlobalStyle />
@@ -81,15 +91,18 @@ export default function PopBrowse({ taskId }) {
                   <button className="btn-browse__edit _btn-bor _hover03">
                     <a href="#">Редактировать задачу</a>
                   </button>
-                  <button className="btn-browse__delete _btn-bor _hover03" onClick={handleDelete}>
-                   Удалить задачу
+                  <button
+                    className="btn-browse__delete _btn-bor _hover03"
+                    onClick={handleDelete}
+                  >
+                    Удалить задачу
                   </button>
                 </div>
                 <button className="btn-browse__close _btn-bg _hover01">
                   <Link to={AppRoutes.MAIN}>Закрыть</Link>
                 </button>
               </div>
-              <div className="pop-browse__btn-edit _hide">
+              {/* <div className="pop-browse__btn-edit _hide">
                 <div className="btn-group">
                   <button className="btn-edit__edit _btn-bg _hover01">
                     <a href="#">Сохранить</a>
@@ -107,7 +120,7 @@ export default function PopBrowse({ taskId }) {
                 <button className="btn-edit__close _btn-bg _hover01">
                   <Link to={AppRoutes.MAIN}>Закрыть</Link>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

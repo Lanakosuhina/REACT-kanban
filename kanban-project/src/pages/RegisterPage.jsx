@@ -13,11 +13,14 @@ export default function RegisterPage() {
   });
 
   function setReg(registerData) {
+    try {
       registerKanban(registerData).then(() => {
         navigate(AppRoutes.LOGIN);
       });
+    } catch (error) {
+      alert(error.message);
     }
-  
+  }
 
   function handleInputChange(source, value) {
     setRegisterData({
@@ -79,11 +82,11 @@ export default function RegisterPage() {
                   className="modal__btn-signup-ent _hover01"
                   id="SignUpEnter"
                   onClick={(event) => {
-                  event.preventDefault();
-                  setReg(registerData)
-                }}
+                    event.preventDefault();
+                    setReg(registerData);
+                  }}
                 >
-                Зарегистрироваться
+                  Зарегистрироваться
                 </button>
                 <div className="modal__form-group">
                   <p>

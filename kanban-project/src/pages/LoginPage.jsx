@@ -13,9 +13,13 @@ export default function LoginPage() {
   });
 
   function setAuth(loginData) {
-    loginKanban(loginData).then((data) => {
-      login(data.user)
-    });
+    try {
+      loginKanban(loginData).then((data) => {
+        login(data.user);
+      });
+    } catch (error) {
+      alert(error.message);
+    }
   }
 
   function handleInputChange(source, value) {
