@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.header`
   width: 100%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${props => props.theme.backColor};
 `;
 
 export const HeaderBlock = styled.div`

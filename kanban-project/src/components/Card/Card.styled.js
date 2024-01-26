@@ -25,7 +25,7 @@ export const CardsItem = styled.div`
 export const CardsCard = styled.div`
  width: 220px;
   height: 130px;
-  background-color: #FFFFFF;
+  background-color: ${props => props.theme.backColor};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,6 @@ export const CardsCard = styled.div`
   @media screen and (max-width: ${breakpoints.xl}px) {
     width: 220px;
     height: 130px;
-    background-color: #FFFFFF;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -97,7 +96,7 @@ export const CardTitle = styled.h3`
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
-  color: #000000;
+  color: ${props => props.theme.color};
   margin-bottom: 10px;
 `
 

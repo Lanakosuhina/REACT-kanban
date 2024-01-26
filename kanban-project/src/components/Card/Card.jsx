@@ -36,11 +36,13 @@ export default function Card({ topic, title, date, id }) {
           <CardTheme $themeColor={color}>
             <ThemeP>{topic}</ThemeP>
           </CardTheme>
+          <Link to={`/edit-card/${id}`}> 
           <CardButton>
             <div></div>
             <div></div>
             <div></div>
           </CardButton>
+          </Link>
         </CardGroup>
         <CardContent>
         <Link to={`/card/${id}`}>

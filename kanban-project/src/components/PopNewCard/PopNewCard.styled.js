@@ -23,18 +23,18 @@ export const GlobalNewCard = createGlobalStyle`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${props => props.theme.exitBack};
 }
 
 .pop-new-card__block {
   display: block;
   margin: 0 auto;
-  background-color: #FFFFFF;
+  background-color: ${props => props.theme.backColor};
   max-width: 630px;
   width: 100%;
   padding: 40px 30px 48px;
   border-radius: 10px;
-  border: 0.7px solid #D4DBE5;
+  border: ${props => props.theme.border};
   position: relative;
 }
 
@@ -44,7 +44,7 @@ export const GlobalNewCard = createGlobalStyle`
 }
 
 .pop-new-card__ttl {
-  color: #000;
+  color: ${props => props.theme.color};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;

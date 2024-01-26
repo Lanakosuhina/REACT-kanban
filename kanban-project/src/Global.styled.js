@@ -1,5 +1,6 @@
 import { createGlobalStyle, css } from "styled-components";
 import { breakpoints } from "../src/lib/breakpoints";
+import normalize from "styled-normalize";
 
 export const hover01 = css`
   &:hover {
@@ -19,7 +20,7 @@ export const hover02 = css`
 
 export const hover03 = css`
   &:hover {
-    background-color: #33399b;
+    background-color: ${(props) => props.theme.h03back};
     color: #ffffff;
     a {
       color: #ffffff;
@@ -28,6 +29,7 @@ export const hover03 = css`
 `;
 
 export const GlobalStyle = createGlobalStyle`
+ ${normalize}
 * {
   margin: 0;
   padding: 0;
@@ -61,7 +63,7 @@ body {
   width: 100%;
   height: 100%;
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  color: #000000;
+  color: ${(props) => props.theme.color};
 }
 
 .loader {
@@ -76,7 +78,8 @@ body {
   width: 100vw;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #F1F1F1;
+  background-color:
+  ${(props) => props.theme.backgroundColor};
 }
 
 .container {
@@ -93,18 +96,18 @@ body {
 }
 
 ._orange {
-  background-color: #FFE4C2;
-  color: #FF6D00;
+  background-color: ${(props) => props.theme.orangeBack};
+  color: ${(props) => props.theme.orangeCol};
 }
 
 ._green {
-  background-color: #B4FDD1;
-  color: #06B16E;
+  background-color: ${(props) => props.theme.greenBack};
+  color: ${(props) => props.theme.greenCol};
 }
 
 ._purple {
-  background-color: #E9D4FF;
-  color: #9A48F1;
+  background-color: ${(props) => props.theme.purpleBack};
+  color: ${(props) => props.theme.purpleCol};
 }
 
 ._gray {
@@ -113,7 +116,7 @@ body {
 }
 
 .subttl {
-  color: #000;
+  color: ${(props) => props.theme.subttl};
   font-size: 14px;
   font-weight: 600;
   line-height: 1;

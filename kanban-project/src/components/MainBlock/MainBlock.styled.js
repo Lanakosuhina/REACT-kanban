@@ -4,7 +4,7 @@ import { breakpoints } from "../../lib/breakpoints";
 
 export const Main = styled.main`
   width: 100%;
-  background-color: #eaeef6;
+  background: ${props => props.theme.backgroundColor};
 `;
 
 export const MainStyledBlock = styled.div`

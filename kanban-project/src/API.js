@@ -21,7 +21,7 @@ export async function getKanban({ user }) {
   }
 }
 
-export async function addTask ({ title, topic, status, description, date }) {
+export async function addTask({ title, topic, status, description, date }) {
   const response = await fetch(API_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -84,12 +84,42 @@ export async function deleteTask(id) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  })
+  });
 
   if (response.status === 201) {
     const data = await response.json();
     return data;
   } else {
     throw new Error("Не удалось удалить задачу, попробуйте снова");
+  }
+}
+
+export async function changeTask({
+  title,
+  topic,
+  status,
+  description,
+  date,
+  id,
+}) {
+  const response = await fetch(API_URL + "/" + id, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      title,
+      topic,
+      status,
+      description,
+      date,
+    }),
+  });
+
+  if (response.status === 201) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error("Не удалось редактировать задачу, попробуйте снова");
   }
 }

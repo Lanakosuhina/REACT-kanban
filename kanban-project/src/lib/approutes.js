@@ -6,4 +6,5 @@ export const AppRoutes = {
   EXIT: "/exit",
   NOT_FOUND: "*",
   ADD_CARD: "/add-card",
+  EDIT_CARD: "/edit-card/:id",
 };

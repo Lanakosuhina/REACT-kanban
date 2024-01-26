@@ -93,6 +93,7 @@ export default function PopNewCard() {
                     name="radios"
                     className="_orange"
                     value="Web Design"
+                    checked={newCard.topic === "Web Design"}
                     onChange={(e) =>
                       setNewCard({ ...newCard, topic: e.target.value })
                     }
@@ -106,6 +107,7 @@ export default function PopNewCard() {
                     name="radios"
                     className="_green"
                     value="Research"
+                    checked={newCard.topic === "Research"}
                     onChange={(e) =>
                       setNewCard({ ...newCard, topic: e.target.value })
                     }
@@ -119,6 +121,7 @@ export default function PopNewCard() {
                     name="radios"
                     className="_purple"
                     value="Copywriting"
+                    checked={newCard.topic === "Copywriting"}
                     onChange={(e) =>
                       setNewCard({ ...newCard, topic: e.target.value })
                     }
