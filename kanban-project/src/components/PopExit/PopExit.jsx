@@ -1,4 +1,5 @@
-import { AppRoutes } from "../../data.js";
+import { AppRoutes } from "../../lib/approutes.js";
+import useUser from "../../hooks/useUser.jsx";
 import {
   PopExitBlock,
   PopExitContainer,
@@ -10,7 +11,8 @@ import {
 } from "./PopExit.styled.js";
 import { Link } from "react-router-dom";
 
-export default function PopExit({ exit }) {
+export default function PopExit() {
+  const { logout } = useUser()
   return (
     <PopExitDiv id="popExit">
       <PopExitContainer>
@@ -24,7 +26,7 @@ export default function PopExit({ exit }) {
                 id="exitYes"
                 onClick={(event) => {
                   event.preventDefault();
-                  exit();
+                  logout();
                 }}
               >
                 Да, выйти

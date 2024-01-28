@@ -1,3 +1,4 @@
+
 import DropDown from "../DropDown/DropDown";
 import {
   HeaderBlock,
@@ -6,7 +7,7 @@ import {
   LogoLight,
 } from "./Header.styled";
 
-function Header({ addCards }) {
+function Header() {
   return (
     <HeaderWrapper>
       <div className="container">
@@ -21,7 +22,7 @@ function Header({ addCards }) {
               <img src="/images/logo_dark.png" alt="logo" />
             </a>
           </LogoDark>
-          <DropDown addCards={addCards} />
+            <DropDown />
         </HeaderBlock>
       </div>
     </HeaderWrapper>

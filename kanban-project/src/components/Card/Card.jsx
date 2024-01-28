@@ -10,9 +10,10 @@ import {
   CardsItem,
 } from "./Card.styled";
 import { Link } from "react-router-dom";
-import { AppRoutes } from "../../data";
+import { format } from 'date-fns'
 
-export default function Card({ topic, title, date }) {
+export default function Card({ topic, title, date, id }) {
+
   let color;
   switch (topic) {
     case "Web Design":
@@ -42,7 +43,7 @@ export default function Card({ topic, title, date }) {
           </CardButton>
         </CardGroup>
         <CardContent>
-          <Link to={AppRoutes.CARD}>
+        <Link to={`/card/${id}`}>
             <CardTitle>{title}</CardTitle>
           </Link>
           <CardDate>
@@ -74,7 +75,7 @@ export default function Card({ topic, title, date }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
+            <p>{format(date, 'dd.MM.yy')}</p>
           </CardDate>
         </CardContent>
       </CardsCard>

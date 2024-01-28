@@ -1,14 +1,26 @@
 import "../signup.css";
-import { Link } from "react-router-dom";
-import { AppRoutes } from "../data";
+import { Link, useNavigate } from "react-router-dom";
+import { AppRoutes } from "../lib/approutes";
 import { useState } from "react";
+import { registerKanban } from "../API";
 
-export default function RegisterPage({ setRegister }) {
+export default function RegisterPage() {
+  const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
     name: "",
     login: "",
     password: "",
   });
+
+  function setReg(registerData) {
+    try {
+      registerKanban(registerData).then(() => {
+        navigate(AppRoutes.LOGIN);
+      });
+    } catch (error) {
+      alert(error.message);
+    }
+  }
 
   function handleInputChange(source, value) {
     setRegisterData({
@@ -70,11 +82,11 @@ export default function RegisterPage({ setRegister }) {
                   className="modal__btn-signup-ent _hover01"
                   id="SignUpEnter"
                   onClick={(event) => {
-                  event.preventDefault();
-                  setRegister(registerData)
-                }}
+                    event.preventDefault();
+                    setReg(registerData);
+                  }}
                 >
-                Зарегистрироваться
+                  Зарегистрироваться
                 </button>
                 <div className="modal__form-group">
                   <p>

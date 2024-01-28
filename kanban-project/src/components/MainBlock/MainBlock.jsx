@@ -1,8 +1,10 @@
 import { statusList } from "../../data";
+import useTasks from "../../hooks/useTasks.jsx";
 import Column from "../Column/Column";
 import { Main, MainStyledBlock, MainContent } from "./MainBlock.styled.js";
 
-export default function MainBlock({ cards }) {
+export default function MainBlock() {
+  const { tasks } = useTasks();
   return (
     <Main>
       <div className="container">
@@ -13,7 +15,7 @@ export default function MainBlock({ cards }) {
                 <Column
                   key={status}
                   title={status}
-                  cardList={cards.filter((card) => card.status === status)} // сверяем свойство карточки статус со статусом
+                  cardList={tasks.filter((card) => card.status === status)} // сверяем свойство карточки статус со статусом
                 />
               ))}
             </MainContent>
