@@ -1,6 +1,5 @@
-import { useContext } from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalContext } from "../contexts/GlobalContext";
+import useGlobal from "../hooks/useGlobal";
 
 const Layout = ({ children }) => {
   const darkTheme = {
@@ -45,7 +44,7 @@ const Layout = ({ children }) => {
 
   };
   // 3.
-  const currentTheme = useContext(GlobalContext);
+  const currentTheme = useGlobal();
   // 4.
   let theme;
   switch (currentTheme.theme) {
@@ -60,7 +59,7 @@ const Layout = ({ children }) => {
   }
   return (
     <ThemeProvider theme={theme}>
-      <main>{children}</main>
+      <>{children}</>
     </ThemeProvider>
   );
 };

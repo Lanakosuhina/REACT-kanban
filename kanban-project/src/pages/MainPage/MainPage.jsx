@@ -1,13 +1,13 @@
-import { GlobalStyle } from "../Global.styled.js";
-import loadingGif from "../assets/christmas-hello.gif";
-import Header from "../components/Header/Header.jsx";
-import MainBlock from "../components/MainBlock/MainBlock.jsx";
-import { useState, useEffect, useContext } from "react";
-import { getKanban } from "../API.js";
-import useUser from "../hooks/useUser.jsx";
-import useTasks from "../hooks/useTasks.jsx";
-import Layout from "../components/Layout.jsx";
-import { GlobalContext } from "../contexts/GlobalContext.jsx";
+import { GlobalStyle } from "../../Global.styled.js";
+import Header from "../../components/Header/Header.jsx";
+import MainBlock from "../../components/MainBlock/MainBlock.jsx";
+import { useState, useEffect } from "react";
+import { getKanban } from "../../API.js";
+import useUser from "../../hooks/useUser.jsx";
+import useTasks from "../../hooks/useTasks.jsx";
+import Layout from "../../components/Layout.jsx";
+import useGlobal from "../../hooks/useGlobal.jsx";
+import loadingGif from "../../../src/assets/Gif.gif"
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +22,7 @@ export default function MainPage() {
     });
   }, [user]);
 
-  const { theme } = useContext(GlobalContext);
+  const { theme } = useGlobal();
   useEffect(() => {
     window.localStorage.setItem("theme", theme);
   }, [theme]);

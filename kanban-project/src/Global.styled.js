@@ -70,7 +70,7 @@ body {
   font-family: Helvetica, sans-serif;
   color: #000;
   text-align: center;
-  margin-top: 100px;
+  margin-top: 200px;
 }
 
 .wrapper {
@@ -95,21 +95,6 @@ body {
 
 }
 
-._orange {
-  background-color: ${(props) => props.theme.orangeBack};
-  color: ${(props) => props.theme.orangeCol};
-}
-
-._green {
-  background-color: ${(props) => props.theme.greenBack};
-  color: ${(props) => props.theme.greenCol};
-}
-
-._purple {
-  background-color: ${(props) => props.theme.purpleBack};
-  color: ${(props) => props.theme.purpleCol};
-}
-
 ._gray {
   background: #94A6BE;
   color: #FFFFFF;
@@ -129,4 +114,42 @@ body {
 ._active-category {
   opacity: 1 !important;
 }
+
+
+.calendar__p {
+  color: #94A6BE;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.pop-wrap {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+._active-day {
+  background-color: #94A6BE;
+  color: ${(props) => props.theme.backgroundColor} ;
+}
+
+
+
+@media screen and (max-width: ${breakpoints.lg}px) {
+  .calendar .date-create {
+    display: none;
+    margin-bottom: 7px;
+  }
+
+  .calendar__p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: ${breakpoints.md}px) {
+.pop-new-card__calendar {
+    width: 100%;
+  }
+}
+
 `;

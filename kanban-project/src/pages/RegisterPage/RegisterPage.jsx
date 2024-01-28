@@ -1,9 +1,21 @@
-import "../signup.css";
+import "../../signup.css";
 import { Link, useNavigate } from "react-router-dom";
-import { AppRoutes } from "../lib/approutes";
+import { AppRoutes } from "../../lib/approutes";
 import { useState } from "react";
-import { registerKanban } from "../API";
-import Layout from "../components/Layout";
+import { registerKanban } from "../../API";
+import Layout from "../../components/Layout";
+import {
+  ContainerSignin,
+  Modal,
+  ModalBlock,
+  ModalBtnEnter,
+  ModalFormGroup,
+  ModalFormLogin,
+  ModalInput,
+  ModalTitle,
+  Wrapper,
+} from "../RegisterPage/Entrance.styled";
+import { GlobalStyle } from "../../Global.styled";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -44,17 +56,17 @@ export default function RegisterPage() {
 
   return (
     <>
+    <GlobalStyle />
       <Layout>
-        <div className="wrapper">
-          <div className="container-signup">
-            <div className="modal">
-              <div className="modal__block">
-                <div className="modal__ttl">
-                  <h2>Регистрация</h2>
-                </div>
-                <form className="modal__form-login" id="formLogUp" action="#">
-                  <input
-                    className="modal__input first-name"
+        <Wrapper>
+          <ContainerSignin>
+            <Modal>
+              <ModalBlock>
+                <ModalTitle>
+                  Регистрация
+                </ModalTitle>
+                <ModalFormLogin id="formLogUp" action="#">
+                  <ModalInput
                     type="text"
                     name="first-name"
                     id="first-name"
@@ -62,8 +74,7 @@ export default function RegisterPage() {
                     value={registerData.name}
                     onChange={onNameChange}
                   />
-                  <input
-                    className="modal__input login"
+                  <ModalInput
                     type="text"
                     name="login"
                     id="loginReg"
@@ -71,8 +82,7 @@ export default function RegisterPage() {
                     value={registerData.login}
                     onChange={onLoginChange}
                   />
-                  <input
-                    className="modal__input password-first"
+                  <ModalInput
                     type="password"
                     name="password"
                     id="passwordFirst"
@@ -80,8 +90,7 @@ export default function RegisterPage() {
                     value={registerData.password}
                     onChange={onPasswordChange}
                   />
-                  <button
-                    className="modal__btn-signup-ent _hover01"
+                  <ModalBtnEnter
                     id="SignUpEnter"
                     onClick={(event) => {
                       event.preventDefault();
@@ -89,18 +98,19 @@ export default function RegisterPage() {
                     }}
                   >
                     Зарегистрироваться
-                  </button>
-                  <div className="modal__form-group">
+                  </ModalBtnEnter>
+
+                  <ModalFormGroup>
                     <p>
-                      Уже есть аккаунт?
-                      <Link to={AppRoutes.LOGIN}>Войдите здесь</Link>{" "}
+                      Уже есть аккаунт?{" "}
+                      <Link to={AppRoutes.LOGIN}>Войдите здесь</Link>
                     </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+                  </ModalFormGroup>
+                </ModalFormLogin>
+              </ModalBlock>
+            </Modal>
+          </ContainerSignin>
+        </Wrapper>
       </Layout>
     </>
   );

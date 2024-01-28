@@ -1,10 +1,22 @@
 import { Link } from "react-router-dom";
-import "../signin.css";
-import { AppRoutes } from "../lib/approutes";
+import "../../signin.css";
+import { AppRoutes } from "../../lib/approutes";
 import { useState } from "react";
-import { loginKanban } from "../API";
-import useUser from "../hooks/useUser";
-import Layout from "../components/Layout";
+import { loginKanban } from "../../API";
+import useUser from "../../hooks/useUser";
+import Layout from "../../components/Layout";
+import {
+  ContainerSignin,
+  Modal,
+  ModalBlock,
+  ModalBtnEnter,
+  ModalFormGroup,
+  ModalFormLogin,
+  ModalInput,
+  ModalTitle,
+  Wrapper,
+} from "../RegisterPage/Entrance.styled";
+import { GlobalStyle } from "../../Global.styled";
 
 export default function LoginPage() {
   const { login } = useUser();
@@ -39,17 +51,17 @@ export default function LoginPage() {
 
   return (
     <>
+     <GlobalStyle />
       <Layout>
-        <div className="wrapper">
-          <div className="container-signin">
-            <div className="modal">
-              <div className="modal__block">
-                <div className="modal__ttl">
-                  <h2>Вход</h2>
-                </div>
-                <form className="modal__form-login" id="formLogIn" action="#">
-                  <input
-                    className="modal__input"
+        <Wrapper>
+          <ContainerSignin>
+            <Modal>
+              <ModalBlock>
+                <ModalTitle>
+                  Вход
+                </ModalTitle>
+                <ModalFormLogin id="formLogIn" action="#">
+                  <ModalInput
                     type="text"
                     name="login"
                     id="formlogin"
@@ -57,8 +69,7 @@ export default function LoginPage() {
                     value={loginData.login}
                     onChange={onLoginChange}
                   />
-                  <input
-                    className="modal__input"
+                  <ModalInput
                     type="password"
                     name="password"
                     id="formpassword"
@@ -66,8 +77,7 @@ export default function LoginPage() {
                     value={loginData.password}
                     onChange={onPasswordChange}
                   />
-                  <button
-                    className="modal__btn-enter _hover01"
+                  <ModalBtnEnter
                     id="btnEnter"
                     onClick={(event) => {
                       event.preventDefault();
@@ -75,16 +85,16 @@ export default function LoginPage() {
                     }}
                   >
                     Войти
-                  </button>
-                  <div className="modal__form-group">
+                  </ModalBtnEnter>
+                  <ModalFormGroup>
                     <p>Нужно зарегистрироваться?</p>
                     <Link to={AppRoutes.REGISTER}>Регистрируйтесь здесь</Link>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+                  </ModalFormGroup>
+                </ModalFormLogin>
+              </ModalBlock>
+            </Modal>
+          </ContainerSignin>
+        </Wrapper>
       </Layout>
     </>
   );

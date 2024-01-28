@@ -48,6 +48,7 @@ export const PopExitBlock = styled.div`
 
 export const PopExitTtl = styled.div`
   h2 {
+    color: ${props => props.theme.color};
     text-align: center;
     font-size: 20px;
     font-weight: 700;

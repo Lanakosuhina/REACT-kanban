@@ -1,16 +1,16 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import MainPage from "./pages/MainPage.jsx";
-import RegisterPage from "./pages/RegisterPage";
-import LoginPage from "./pages/LoginPage";
-import OneCardPage from "./pages/OneCardPage";
-import ExitPage from "./pages/ExitPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import { AppRoutes } from "../src/lib/approutes.js";
 import NotFoundPage from "./pages/NotFoundResource/NotFoundPage.jsx";
 import PrivateRoute from "./components/PrivateRoute.jsx";
-import AddCardPage from "./pages/AddCardPage.jsx";
-import EditCardPage from "./pages/EditCardPage.jsx";
+import EditCardPage from "./pages/EditCardPage/EditCardPage.jsx";
 import Layout from "./components/Layout.jsx";
+import MainPage from "./pages/MainPage/MainPage.jsx";
+import OneCardPage from "./pages/OneCradPage/OneCardPage.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx"
+import ExitPage from "./pages/ExitPage/ExitPage.jsx"
+import AddCardPage from "./pages/AddCardPage/AddCardPage.jsx"
 
 function App() {
   return (

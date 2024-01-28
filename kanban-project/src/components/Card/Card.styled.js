@@ -1,6 +1,6 @@
 import { styled, keyframes } from 'styled-components'
-import { themeStyles } from '../../lib/theme';
 import { breakpoints } from '../../lib/breakpoints';
+import { themeStyles } from '../../lib/theme';
 
 
 
@@ -67,10 +67,10 @@ export const CardTheme = styled.div`
   padding: 5px 14px;
   border-radius: 18px;
   background-color: ${({ $themeColor }) =>
-    themeStyles[$themeColor]?.backgroundColor || "#b4fdd1"};
+    themeStyles[$themeColor]?.themeBack || "#b4fdd1"};
 
 ${ThemeP} {
-    color: ${({ $themeColor }) => themeStyles[$themeColor]?.color || "#06b16e"};
+    color: ${({ $themeColor }) => themeStyles[$themeColor]?.themeCol || "#06b16e"};
   }
 `
 

@@ -1,10 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
+import { hover01, hover03 } from "../../Global.styled";
+import { breakpoints } from "../../lib/breakpoints";
 
-export const GlobalPopBrowse = createGlobalStyle`
-
-/* POP BROWSE */
-
-.pop-browse {
+export const PopBrowseDiv = styled.div`
   /* display: none; */
   width: 100%;
   height: 100%;
@@ -14,9 +12,17 @@ export const GlobalPopBrowse = createGlobalStyle`
   top: 0;
   left: 0;
   z-index: 7;
-}
 
-.pop-browse__container {
+  &:target {
+    display: block;
+  }
+
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    top: 70px;
+  }
+`;
+
+export const PopBrowseContainer = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -26,9 +32,14 @@ export const GlobalPopBrowse = createGlobalStyle`
   align-items: center;
   justify-content: center;
   background: ${(props) => props.theme.exitBack};
-}
 
-.pop-browse__block {
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    padding: 0;
+    justify-content: flex-start;
+  }
+`;
+
+export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: ${(props) => props.theme.backColor};
@@ -38,81 +49,132 @@ export const GlobalPopBrowse = createGlobalStyle`
   border-radius: 10px;
   border: ${(props) => props.theme.border};
   position: relative;
-}
 
-.pop-browse__content {
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    border-radius: 0;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    padding: 20px 16px 32px;
+  }
+`;
+
+export const PopBrowseContent = styled.div`
   display: block;
   text-align: left;
-}
-
-.pop-browse__content .categories__theme {
   opacity: 1;
-}
 
-.pop-browse__content .theme-down {
-  display: none;
-  margin-bottom: 20px;
-}
+  @media screen and (max-width: ${breakpoints.md}px) {
+    display: block;
+    margin-bottom: 20px;
+  }
+`;
 
-.pop-browse__content .theme-top {
-  display: block;
-}
-
-.pop-browse__top-block {
+export const PopBrowseTop = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-}
+`;
 
-.pop-browse__ttl {
-  color: #000;
+export const PopBrowseTitle = styled.h3`
+  color: ${(props) => props.theme.color};
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-}
+`;
 
-.pop-browse__wrap {
+export const PopBrowseWrap = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-}
 
-.pop-browse__form {
+  @media screen and (max-width: ${breakpoints.lg}px) {
+    display: block;
+  }
+`;
+
+export const PopBrowseForm = styled.form`
   max-width: 370px;
   width: 100%;
   display: block;
   margin-bottom: 20px;
-}
 
-.pop-browse__btn-browse, .pop-browse__btn-edit {
+  @media screen and (max-width: ${breakpoints.md}px) {
+    max-width: 100%;
+  }
+`;
+
+export const Content = styled.div`
+  .theme-down {
+    display: none;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: ${breakpoints.md}px) {
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+  .theme-top {
+    display: block;
+    @media screen and (max-width: ${breakpoints.md}px) {
+      display: none;
+    }
+  }
+`;
+
+export const BrowseButtonGroup = styled.div`
+  button {
+    margin-right: 8px;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    margin-right: 0px;
+  }
+`;
+
+export const EditButtonGroup = styled.div`
+  button {
+    margin-right: 8px;
+  }
+
+  @media screen and (max-width: ${breakpoints.md}px) {
+    margin-right: 0px;
+  }
+`;
+
+export const PopBrowseButtons = styled.div`
+  /*.pop-browse__btn-browse, .pop-browse__btn-edit*/
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-}
 
-.pop-browse__btn-browse button, .pop-browse__btn-edit button {
-  height: 30px;
-  margin-bottom: 10px;
-  padding: 0 14px;
-}
+  button {
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 0 14px;
 
-.pop-browse__btn-browse .btn-group button, .pop-browse__btn-edit .btn-group button {
-  margin-right: 8px;
-}
+    @media screen and (max-width: ${breakpoints.md}px) {
+      width: 100%;
+      height: 40px;
+    }
+  }
+`;
 
-.form-browse__block {
+export const FormBrowseBlock = styled.div`
   display: flex;
   flex-direction: column;
-}
+`;
 
-.form-browse__area {
+export const FormBrowseArea = styled.textarea`
   max-width: 370px;
   width: 100%;
   outline: none;
   padding: 14px;
   background: ${(props) => props.theme.backgroundColor};
+  color: ${(props) => props.theme.color};
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   border-radius: 8px;
   font-size: 14px;
@@ -120,77 +182,131 @@ export const GlobalPopBrowse = createGlobalStyle`
   letter-spacing: -0.14px;
   margin-top: 14px;
   height: 200px;
-}
 
-.form-browse__area::-moz-placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94A6BE;
-  letter-spacing: -0.14px;
-}
+  ::-moz-placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
 
-.form-browse__area::placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94A6BE;
-  letter-spacing: -0.14px;
-}
+  ::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
 
-/* STATUS FROM POP BROWSE*/
+  @media screen and (max-width: ${breakpoints.md}px) {
+    max-width: 100%;
+    height: 37px;
+  }
+`;
 
-.status {
+export const CalendarP = styled.p`
+    color: #94A6BE;
+    font-size: 10px;
+    line-height: 1;
+`
+
+export const Status = styled.div`
   margin-bottom: 11px;
-}
+`;
 
-.status__p {
+export const StatusParagraph = styled.p`
   margin-bottom: 14px;
-}
+`;
 
-.status__themes {
+export const StatusThemes = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-}
-
-.status__theme {
+`;
+export const StTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94A6BE;
+  color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-}
+  
+  p {
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.14px;
+    color: #fff;
+  }
+`
 
-.status__theme p {
-  font-size: 14px;
-  line-height: 1;
-  letter-spacing: -0.14px;
-}
+export const StatusTheme = styled.div`
+   border-radius: 24px;
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  color: #94a6be;
+  padding: 11px 14px 10px;
+  margin-right: 7px;
+  margin-bottom: 7px;
+  transition: background-color 0.3s; /* добавляем анимацию изменения цвета */
 
-._btn-bor {
+  input[type="radio"] {
+    display: none;
+  }
+
+  &:hover {
+    background-color: #94a6be; /* изменяем цвет при наведении */
+    color: #fff; /* изменяем цвет текста при наведении */
+  }
+
+  label {
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: -0.14px;
+    color: #fff;
+  }
+
+  &._gray {
+    color: #777; /* изменяем цвет для класса _gray */
+  }
+
+  &._gray:hover {
+    background-color: #777; /* изменяем цвет при наведении для класса _gray */
+    color: #fff; /* изменяем цвет текста при наведении для класса _gray */
+  }
+
+  input[type="radio"]:checked + p {
+    color: #fff;
+  }
+
+  &._gray input[type="radio"]:checked + p {
+    color: #fff;
+  }
+
+`;
+
+export const ButtonBordered = styled.button`
   border-radius: 4px;
-  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  border: 0.7px solid ${(props) => props.theme.paletteNavy60 || "#565EEF"};
   outline: none;
   background: transparent;
   color: ${(props) => props.theme.btn};
-}
 
-._btn-bor a {
-  color: ${(props) => props.theme.btn};
-}
+  a {
+    color: ${(props) => props.theme.btn};
+  }
+  ${hover03}
+`;
 
-._btn-bg {
+export const ButtonBackground = styled.button`
   border-radius: 4px;
-  background: #565EEF;
+  background: #565eef;
   border: none;
   outline: none;
-  color: #FFFFFF;
-}
+  color: #ffffff;
 
-._btn-bg a {
-  color: #FFFFFF;
-}
+  a {
+    color: #ffffff;
+  }
+  ${hover01}
 `;

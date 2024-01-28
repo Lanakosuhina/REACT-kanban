@@ -5,11 +5,33 @@ import { GlobalStyle } from "../../Global.styled";
 import useTasks from "../../hooks/useTasks";
 import { changeTask, deleteTask } from "../../API";
 import { useState } from "react";
-import { GlobalPopBrowse } from "../PopBrowse/PopBrowse.styled";
+import {
+  BrowseButtonGroup,
+  ButtonBackground,
+  ButtonBordered,
+  CalendarP,
+  FormBrowseArea,
+  FormBrowseBlock,
+  PopBrowseBlock,
+  PopBrowseButtons,
+  PopBrowseContainer,
+  PopBrowseContent,
+  PopBrowseDiv,
+  PopBrowseForm,
+  PopBrowseTitle,
+  PopBrowseTop,
+  PopBrowseWrap,
+  Status,
+  StatusParagraph,
+  StatusTheme,
+  StatusThemes,
+} from "../PopBrowse/PopBrowse.styled";
+import { CategoriesTheme } from "../PopNewCard/PopNewCard.styled";
+import { format } from "date-fns";
 
 export default function PopEditCard({ id }) {
   const { tasks, createTask } = useTasks();
-  const taskData = tasks.filter((task) => task._id === id);
+  const taskData = tasks.find((task) => task._id === id);
 
   const [selected, setSelected] = useState(taskData.date);
   const [changeCard, setChangeCard] = useState({
@@ -65,26 +87,29 @@ export default function PopEditCard({ id }) {
 
   return (
     <>
-    <GlobalPopBrowse  />
       <GlobalStyle />
-      <div className="pop-browse" id="popBrowse">
-        <div className="pop-browse__container">
-          <div className="pop-browse__block">
-            <div className="pop-browse__content">
-              <div className="pop-browse__top-block">
-                <h3 className="pop-browse__ttl">{taskData.title}</h3>
-                <div className="categories__theme theme-top" color={color}>
-                  <p className="_orange">{taskData.topic}</p>
-                </div>
-              </div>
-              <div className="pop-browse__status status">
-                <p className="status__p subttl">Статус</p>
-                <div className="status__themes">
-                  <div className="status__theme">
+
+      <PopBrowseDiv id="popBrowse">
+        <PopBrowseContainer>
+          <PopBrowseBlock>
+            <PopBrowseContent>
+              <PopBrowseTop>
+                <PopBrowseTitle>{taskData.title}</PopBrowseTitle>
+                <CategoriesTheme
+                  $themeColor={color}
+                  className="_active-category"
+                >
+                  <p>{taskData.topic}</p>
+                </CategoriesTheme>
+              </PopBrowseTop>
+              <Status className="pop-browse__status ">
+                <StatusParagraph className="subttl">Статус</StatusParagraph>
+                <StatusThemes>
+                  <StatusTheme>
                     <input
                       type="radio"
                       name="radios"
-                      className="_orange"
+                      id="no-status"
                       value="Без статуса"
                       checked={changeCard.status === "Без статуса"}
                       onChange={(e) =>
@@ -94,13 +119,13 @@ export default function PopEditCard({ id }) {
                         })
                       }
                     />
-                    <p>Без статуса</p>
-                  </div>
-                  <div className="status__theme _gray">
+                    <label htmlFor="no-status">Без статуса</label>
+                  </StatusTheme>
+                  <StatusTheme >
                     <input
                       type="radio"
                       name="radios"
-                      className="_orange"
+                      id="to-do"
                       value="Нужно сделать"
                       checked={changeCard.status === "Нужно сделать"}
                       onChange={(e) =>
@@ -110,13 +135,13 @@ export default function PopEditCard({ id }) {
                         })
                       }
                     />
-                    <p className="_gray">Нужно сделать</p>
-                  </div>
-                  <div className="status__theme">
+                    <label htmlFor="to-do">Нужно сделать</label>
+                  </StatusTheme>
+                  <StatusTheme className="status__theme">
                     <input
                       type="radio"
                       name="radios"
-                      className="_orange"
+                      id="in-work"
                       value="В работе"
                       checked={changeCard.status === "В работе"}
                       onChange={(e) =>
@@ -126,13 +151,13 @@ export default function PopEditCard({ id }) {
                         })
                       }
                     />
-                    <p>В работе</p>
-                  </div>
-                  <div className="status__theme">
+                    <label htmlFor="in-work">В работе</label>
+                  </StatusTheme>
+                  <StatusTheme className="status__theme">
                     <input
                       type="radio"
                       name="radios"
-                      className="_orange"
+                      id="testing"
                       value="Тестирование"
                       checked={changeCard.status === "Тестирование"}
                       onChange={(e) =>
@@ -142,13 +167,13 @@ export default function PopEditCard({ id }) {
                         })
                       }
                     />
-                    <p>Тестирование</p>
-                  </div>
-                  <div className="status__theme">
+                    <label htmlFor="testing">Тестирование</label>
+                  </StatusTheme>
+                  <StatusTheme className="status__theme">
                     <input
                       type="radio"
                       name="radios"
-                      className="_orange"
+                      id="ready"
                       value="Готово"
                       checked={changeCard.status === "Готово"}
                       onChange={(e) =>
@@ -158,21 +183,17 @@ export default function PopEditCard({ id }) {
                         })
                       }
                     />
-                    <p>Готово</p>
-                  </div>
-                </div>
-              </div>
-              <div className="pop-browse__wrap">
-                <form
-                  className="pop-browse__form form-browse"
-                  id="formBrowseCard"
-                  action="#"
-                >
-                  <div className="form-browse__block">
-                    <label htmlFor="textArea01" className="subttl">
+                    <label htmlFor="ready">Готово</label>
+                  </StatusTheme>
+                </StatusThemes>
+              </Status>
+              <PopBrowseWrap>
+                <PopBrowseForm id="formBrowseCard" action="#">
+                  <FormBrowseBlock>
+                    <label htmlFor="textArea01" className="subttl" readOnly>
                       Описание задачи
                     </label>
-                    <textarea
+                    <FormBrowseArea
                       className="form-browse__area"
                       name="text"
                       id="textArea01"
@@ -183,48 +204,45 @@ export default function PopEditCard({ id }) {
                           description: e.target.value,
                         })
                       }
-                    ></textarea>
-                  </div>
-                </form>
+                    ></FormBrowseArea>
+                  </FormBrowseBlock>
+                </PopBrowseForm>
                 <Calendar selected={selected} setSelected={setSelected}>
-                  <p className="calendar__p date-end">
+                  <CalendarP>
                     Срок исполнения:{" "}
-                    <span className="date-control">{taskData.date}</span>
-                  </p>
+                    <span className="date-control" readOnly>
+                      {format(taskData.date, "dd.MM.yy")}
+                    </span>
+                  </CalendarP>
                 </Calendar>
-              </div>
-              <div className="theme-down__categories theme-down">
-                <p className="categories__p subttl">Категория</p>
-                <div className="categories__theme _orange _active-category">
-                  <p className="_orange">Web Design</p>
-                </div>
-              </div>
-              <div className="pop-browse__btn-edit">
-                <div className="btn-group">
-                  <button
+              </PopBrowseWrap>
+
+              <PopBrowseButtons className="pop-browse__btn-edit">
+                <BrowseButtonGroup className="btn-group">
+                  <ButtonBackground
                     className="btn-edit__edit _btn-bg _hover01"
                     onClick={handleChange}
                   >
                     Сохранить
-                  </button>
-                  <button className="btn-edit__edit _btn-bor _hover03">
+                  </ButtonBackground>
+                  <ButtonBordered className="btn-edit__edit _btn-bor _hover03">
                     <Link to={AppRoutes.MAIN}>Отменить</Link>
-                  </button>
-                  <button
+                  </ButtonBordered>
+                  <ButtonBordered
                     className="btn-browse__delete _btn-bor _hover03"
                     onClick={handleDelete}
                   >
                     Удалить задачу
-                  </button>
-                </div>
-                <button className="btn-edit__close _btn-bg _hover01">
+                  </ButtonBordered>
+                </BrowseButtonGroup>
+                <ButtonBackground className="btn-edit__close _btn-bg _hover01">
                   <Link to={AppRoutes.MAIN}>Закрыть</Link>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                </ButtonBackground>
+              </PopBrowseButtons>
+            </PopBrowseContent>
+          </PopBrowseBlock>
+        </PopBrowseContainer>
+      </PopBrowseDiv>
     </>
   );
 }
