@@ -9,7 +9,6 @@ import {
   BrowseButtonGroup,
   ButtonBackground,
   ButtonBordered,
-  CalendarP,
   FormBrowseArea,
   FormBrowseBlock,
   PopBrowseBlock,
@@ -25,9 +24,8 @@ import {
   StatusParagraph,
   StatusTheme,
   StatusThemes,
-} from "../PopBrowse/PopBrowse.styled";
+} from "../PopBrowse/PopBrowse.styled01";
 import { CategoriesTheme } from "../PopNewCard/PopNewCard.styled";
-import { format } from "date-fns";
 
 export default function PopEditCard({ id }) {
   const { tasks, createTask } = useTasks();
@@ -42,7 +40,6 @@ export default function PopEditCard({ id }) {
     description: taskData.description,
   });
 
-  console.log(taskData.topic);
   let color;
   switch (taskData.topic) {
     case "Web Design":
@@ -102,7 +99,7 @@ export default function PopEditCard({ id }) {
                   <p>{taskData.topic}</p>
                 </CategoriesTheme>
               </PopBrowseTop>
-              <Status className="pop-browse__status ">
+              <Status>
                 <StatusParagraph className="subttl">Статус</StatusParagraph>
                 <StatusThemes>
                   <StatusTheme>
@@ -207,14 +204,7 @@ export default function PopEditCard({ id }) {
                     ></FormBrowseArea>
                   </FormBrowseBlock>
                 </PopBrowseForm>
-                <Calendar selected={selected} setSelected={setSelected}>
-                  <CalendarP>
-                    Срок исполнения:{" "}
-                    <span className="date-control" readOnly>
-                      {format(taskData.date, "dd.MM.yy")}
-                    </span>
-                  </CalendarP>
-                </Calendar>
+                <Calendar selected={selected} setSelected={setSelected} />
               </PopBrowseWrap>
 
               <PopBrowseButtons className="pop-browse__btn-edit">
@@ -226,7 +216,7 @@ export default function PopEditCard({ id }) {
                     Сохранить
                   </ButtonBackground>
                   <ButtonBordered className="btn-edit__edit _btn-bor _hover03">
-                    <Link to={AppRoutes.MAIN}>Отменить</Link>
+                    <Link to={`/card/${id}`}>Отменить</Link>
                   </ButtonBordered>
                   <ButtonBordered
                     className="btn-browse__delete _btn-bor _hover03"

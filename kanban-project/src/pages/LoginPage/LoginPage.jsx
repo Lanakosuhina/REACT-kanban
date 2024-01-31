@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "../../signin.css";
 import { AppRoutes } from "../../lib/approutes";
 import { useState } from "react";
 import { loginKanban } from "../../API";

@@ -8,7 +8,6 @@ import {
   BrowseButtonGroup,
   ButtonBackground,
   ButtonBordered,
-  CalendarP,
   FormBrowseArea,
   FormBrowseBlock,
   PopBrowseBlock,
@@ -24,9 +23,8 @@ import {
   Status,
   StatusParagraph,
   StatusThemes,
-} from "../PopBrowse/PopBrowse.styled";
+} from "./PopBrowse.styled01";
 import { CategoriesTheme } from "../PopNewCard/PopNewCard.styled";
-import { format } from "date-fns";
 
 export default function PopBrowse({ id }) {
   const { tasks, createTask } = useTasks();
@@ -70,7 +68,7 @@ export default function PopBrowse({ id }) {
                   <p>{taskData.topic}</p>
                 </CategoriesTheme>
               </PopBrowseTop>
-              <Status className="pop-browse__status ">
+              <Status>
                 <StatusParagraph className="subttl">Статус</StatusParagraph>
                 <StatusThemes>
                   <StTheme className="_gray">
@@ -92,29 +90,21 @@ export default function PopBrowse({ id }) {
                     ></FormBrowseArea>
                   </FormBrowseBlock>
                 </PopBrowseForm>
-                <Calendar>
-                  <CalendarP>
-                    Срок исполнения:{" "}
-                    <span className="date-control" readOnly>
-                      {format(taskData.date, 'dd.MM.yy')}
-                    </span>
-                  </CalendarP>
-                </Calendar>
+                <Calendar selected={taskData.date} readOnly/>
               </PopBrowseWrap>
 
               <PopBrowseButtons>
-                <BrowseButtonGroup className="btn-group">
-                  <ButtonBordered className="btn-browse__edit _btn-bor _hover03">
+                <BrowseButtonGroup >
+                  <ButtonBordered>
                     <Link to={`/edit-card/${id}`}>Редактировать задачу</Link>
                   </ButtonBordered>
                   <ButtonBordered
-                    className="btn-browse__delete _btn-bor _hover03"
                     onClick={handleDelete}
                   >
                     Удалить задачу
                   </ButtonBordered>
                 </BrowseButtonGroup>
-                <ButtonBackground className="btn-browse__close _btn-bg _hover01">
+                <ButtonBackground>
                   <Link to={AppRoutes.MAIN}>Закрыть</Link>
                 </ButtonBackground>
               </PopBrowseButtons>

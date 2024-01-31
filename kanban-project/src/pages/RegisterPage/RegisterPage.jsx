@@ -1,4 +1,3 @@
-import "../../signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../lib/approutes";
 import { useState } from "react";

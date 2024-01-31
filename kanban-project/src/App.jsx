@@ -1,4 +1,3 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import { AppRoutes } from "../src/lib/approutes.js";

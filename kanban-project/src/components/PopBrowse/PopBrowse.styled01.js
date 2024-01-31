@@ -206,10 +206,10 @@ export const FormBrowseArea = styled.textarea`
 `;
 
 export const CalendarP = styled.p`
-    color: #94A6BE;
-    font-size: 10px;
-    line-height: 1;
-`
+  color: #94a6be;
+  font-size: 10px;
+  line-height: 1;
+`;
 
 export const Status = styled.div`
   margin-bottom: 11px;
@@ -232,57 +232,41 @@ export const StTheme = styled.div`
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-  
+
   p {
     font-size: 14px;
     line-height: 1;
     letter-spacing: -0.14px;
     color: #fff;
   }
-`
+`;
 
 export const StatusTheme = styled.div`
-   border-radius: 24px;
+  border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-  transition: background-color 0.3s; /* добавляем анимацию изменения цвета */
+  transition: background-color 0.3s; 
 
   input[type="radio"] {
     display: none;
+    &:checked + label {
+      opacity: 1 !important;
+    }
   }
-
+  
   &:hover {
-    background-color: #94a6be; /* изменяем цвет при наведении */
-    color: #fff; /* изменяем цвет текста при наведении */
+    background-color: #94a6be;
+    color: ${(props) => props.theme.label};
   }
 
   label {
     font-size: 14px;
     line-height: 1;
     letter-spacing: -0.14px;
-    color: #fff;
   }
-
-  &._gray {
-    color: #777; /* изменяем цвет для класса _gray */
-  }
-
-  &._gray:hover {
-    background-color: #777; /* изменяем цвет при наведении для класса _gray */
-    color: #fff; /* изменяем цвет текста при наведении для класса _gray */
-  }
-
-  input[type="radio"]:checked + p {
-    color: #fff;
-  }
-
-  &._gray input[type="radio"]:checked + p {
-    color: #fff;
-  }
-
 `;
 
 export const ButtonBordered = styled.button`
