@@ -10,10 +10,13 @@ import {
   PopExitYes,
 } from "./PopExit.styled.js";
 import { Link } from "react-router-dom";
+import { GlobalStyle } from "../../Global.styled.js";
 
 export default function PopExit() {
   const { logout } = useUser()
   return (
+    <>
+    <GlobalStyle />
     <PopExitDiv id="popExit">
       <PopExitContainer>
         <PopExitBlock>
@@ -39,5 +42,6 @@ export default function PopExit() {
         </PopExitBlock>
       </PopExitContainer>
     </PopExitDiv>
+    </>
   );
 }

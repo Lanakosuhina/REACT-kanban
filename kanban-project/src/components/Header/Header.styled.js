@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderWrapper = styled.header`
   width: 100%;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.backColor};
 `;
 
 export const HeaderBlock = styled.div`
@@ -18,18 +18,8 @@ export const HeaderBlock = styled.div`
   padding: 0 10px;
 `;
 
-export const LogoLight = styled.div`
-  &._show._light {
-    a {
-      img {
-        width: 85px;
-      }
-    }
-  }
-`;
-
-export const LogoDark = styled.div`
-  &._dark {
-    display: none;
+export const LogoLink = styled.a`
+  img {
+    width: 85px;
   }
 `;
