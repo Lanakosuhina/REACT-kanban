@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "../Calendar/Calendar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../lib/approutes";
 import { GlobalStyle } from "../../Global.styled";
 import {
@@ -15,6 +15,7 @@ import {
   PopNewCardClose,
   PopNewCardContainer,
   PopNewCardContent,
+  PopNewCardDiv,
   PopNewCardForm,
   PopNewCardTtl,
   PopNewCardWrap,
@@ -49,18 +50,16 @@ export default function PopNewCard() {
   return (
     <>
       <GlobalStyle />
-      <PopNewCard id="popNewCard">
+      <PopNewCardDiv id="popNewCard">
         <PopNewCardContainer>
           <PopNewCardBlock>
             <PopNewCardContent>
               <PopNewCardTtl>Создание задачи</PopNewCardTtl>
-              <PopNewCardClose to={AppRoutes.MAIN}> &#10006;</PopNewCardClose>
+              <PopNewCardClose>
+                <Link to={AppRoutes.MAIN}> &#10006;</Link>
+              </PopNewCardClose>
               <PopNewCardWrap>
-                <PopNewCardForm
-                  className=" form-new"
-                  id="formNewCard"
-                  action="#"
-                >
+                <PopNewCardForm id="formNewCard" action="#">
                   <FormNewBlock>
                     <label htmlFor="formTitle" className="subttl">
                       Название задачи
@@ -145,7 +144,7 @@ export default function PopNewCard() {
             </PopNewCardContent>
           </PopNewCardBlock>
         </PopNewCardContainer>
-      </PopNewCard>
+      </PopNewCardDiv>
     </>
   );
 }

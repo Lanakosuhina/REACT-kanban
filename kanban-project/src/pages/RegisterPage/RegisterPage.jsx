@@ -5,9 +5,11 @@ import { registerKanban } from "../../API";
 import Layout from "../../components/Layout";
 import {
   ContainerSignin,
+  ErrorText,
   Modal,
   ModalBlock,
   ModalBtnEnter,
+  ModalBtnErr,
   ModalFormGroup,
   ModalFormLogin,
   ModalInput,
@@ -18,6 +20,7 @@ import { GlobalStyle } from "../../Global.styled";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const [hasError, setHasError] = useState(false);
   const [registerData, setRegisterData] = useState({
     name: "",
     login: "",
@@ -26,11 +29,25 @@ export default function RegisterPage() {
 
   function setReg(registerData) {
     try {
+      if (
+        registerData.login === "" ||
+        registerData.password === "" ||
+        registerData.name === ""
+      ) {
+        setHasError(true);
+        throw new Error(
+          "Введенные вами данные не корректны. Чтобы завершить регистрацию, введите данные корректно и повторите попытку."
+        );
+      }
       registerKanban(registerData).then(() => {
         navigate(AppRoutes.LOGIN);
       });
     } catch (error) {
-      alert(error.message);
+      setHasError(error.message);
+      console.error(error);
+      setTimeout(() => {
+        setHasError(false);
+      }, 2000);
     }
   }
 
@@ -55,15 +72,13 @@ export default function RegisterPage() {
 
   return (
     <>
-    <GlobalStyle />
+      <GlobalStyle />
       <Layout>
         <Wrapper>
           <ContainerSignin>
             <Modal>
               <ModalBlock>
-                <ModalTitle>
-                  Регистрация
-                </ModalTitle>
+                <ModalTitle>Регистрация</ModalTitle>
                 <ModalFormLogin id="formLogUp" action="#">
                   <ModalInput
                     type="text"
@@ -89,15 +104,30 @@ export default function RegisterPage() {
                     value={registerData.password}
                     onChange={onPasswordChange}
                   />
-                  <ModalBtnEnter
-                    id="SignUpEnter"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setReg(registerData);
-                    }}
-                  >
-                    Зарегистрироваться
-                  </ModalBtnEnter>
+                  {hasError ? (
+                    <>
+                      <ErrorText>{hasError}</ErrorText>
+                      <ModalBtnErr
+                        disabled
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setReg(registerData);
+                        }}
+                      >
+                        Зарегистрироваться
+                      </ModalBtnErr>
+                    </>
+                  ) : (
+                    <ModalBtnEnter
+                      id="SignUpEnter"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setReg(registerData);
+                      }}
+                    >
+                      Зарегистрироваться
+                    </ModalBtnEnter>
+                  )}
 
                   <ModalFormGroup>
                     <p>

@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { hover01 } from "../../Global.styled";
 import { breakpoints } from "../../lib/breakpoints";
-import { themeStyles } from "../../lib/theme";
 
-export const PopNewCard = styled.div`
+export const PopNewCardDiv = styled.div`
   display: block;
   width: 100%;
   min-width: 375px;
@@ -78,7 +77,7 @@ export const PopNewCardTtl = styled.h3`
   margin-bottom: 20px;
 `;
 
-export const PopNewCardClose = styled.link`
+export const PopNewCardClose = styled.div`
   position: absolute;
   top: 20px;
   right: 30px;
@@ -226,14 +225,7 @@ export const CategoriesTheme = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
-  background-color: ${({ $themeColor }) =>
-    themeStyles[$themeColor]?.themeBack || "#b4fdd1"};
-
-  p {
-    color: ${({ $themeColor }) =>
-      themeStyles[$themeColor]?.themeCol || "#06b16e"};
-  }
-
+ 
   label {
     font-size: 14px;
     font-weight: 600;
@@ -245,6 +237,10 @@ export const CategoriesTheme = styled.div`
     display: none;
   }
 
+  input[type="radio"]:checked + label:checked {
+    opacity: 1 !important;
+   
+  }
   label {
     display: inline-block;
     cursor: pointer;
@@ -258,3 +254,4 @@ export const CategoriesTheme = styled.div`
     display: block;
   }
 `;
+

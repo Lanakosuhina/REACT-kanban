@@ -242,19 +242,23 @@ export const StTheme = styled.div`
 `;
 
 export const StatusTheme = styled.div`
+  display: inline-block;
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: #94a6be;
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
-  transition: background-color 0.3s; 
+  transition: background-color 0.3s;
 
   input[type="radio"] {
     display: none;
-    &:checked + label {
-      opacity: 1 !important;
-    }
+  }
+
+  input[type="radio"]:checked + label {
+    opacity: 1 !important;
+    color: #fff ;
+    background-color: #94a6be;
   }
   
   &:hover {
@@ -263,10 +267,16 @@ export const StatusTheme = styled.div`
   }
 
   label {
+    display: inline-block;
+    cursor: pointer;
     font-size: 14px;
     line-height: 1;
+    user-select: none;
     letter-spacing: -0.14px;
   }
+
+  
+
 `;
 
 export const ButtonBordered = styled.button`

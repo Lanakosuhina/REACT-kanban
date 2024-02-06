@@ -22,6 +22,9 @@ export default function Calendar({ selected, setSelected, children}) {
   .rdp-caption, .rdp-head_cell, .rdp-day {
     color: #94A6BE;
   }
+  .my-today { 
+    font-weight: bold;
+  }
 
   .rdp {
     --rdp-cell-size: 30px;

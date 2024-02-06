@@ -11,15 +11,21 @@ import loadingGif from "../../../src/assets/Gif.gif"
 
 export default function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
   const { user } = useUser();
   const { createTask } = useTasks();
 
   useEffect(() => {
-    getKanban({ user }).then((data) => {
-      createTask(data);
-      console.log(data);
-      setIsLoading(false);
-    });
+    getKanban({ user })
+      .then((data) => {
+        createTask(data);
+        console.log(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setHasError(true);
+        console.error(error);
+      });
   }, [user]);
 
   const { theme } = useGlobal();
@@ -35,6 +41,10 @@ export default function MainPage() {
           {isLoading ? (
             <div className="loader">
               <img src={loadingGif} alt="wait until the page loads" />
+            </div>
+           ) : hasError ? (
+            <div className="error">
+              {hasError}
             </div>
           ) : (
             <MainBlock />

@@ -14,7 +14,7 @@ export async function getKanban({ user }) {
     },
   });
   if (response.status !== 200) {
-    throw new Error("Нет авторизации");
+    throw new Error("Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа.");
   } else {
     const data = await response.json();
     return data;
@@ -53,7 +53,7 @@ export async function loginKanban({ login, password }) {
     }),
   });
   if (response.status === 400) {
-    throw new Error("Неверный логин или пароль");
+    throw new Error("Введенные вами данные не распознаны. Проверьте свой логин и пароль и повторите попытку входа.");
   } else {
     const data = await response.json();
     return data;
@@ -71,7 +71,7 @@ export async function registerKanban({ login, name, password }) {
   });
 
   if (response.status === 400) {
-    throw new Error("Попробуйте снова");
+    throw new Error("Введенные вами данные не корректны. Чтобы завершить регистрацию, введите данные корректно и повторите попытку.");
   } else {
     const data = await response.json();
     return data;

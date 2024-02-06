@@ -63,7 +63,7 @@ export default function PopEditCard({ id }) {
         topic: changeCard.topic,
         status: changeCard.status,
         description: changeCard.description,
-        date: changeCard.date,
+        date: selected,
       }).then((data) => {
         createTask({ data });
       });
@@ -118,7 +118,8 @@ export default function PopEditCard({ id }) {
                     />
                     <label htmlFor="no-status">Без статуса</label>
                   </StatusTheme>
-                  <StatusTheme >
+
+                  <StatusTheme>
                     <input
                       type="radio"
                       name="radios"
@@ -134,7 +135,8 @@ export default function PopEditCard({ id }) {
                     />
                     <label htmlFor="to-do">Нужно сделать</label>
                   </StatusTheme>
-                  <StatusTheme className="status__theme">
+
+                  <StatusTheme>
                     <input
                       type="radio"
                       name="radios"
@@ -166,7 +168,8 @@ export default function PopEditCard({ id }) {
                     />
                     <label htmlFor="testing">Тестирование</label>
                   </StatusTheme>
-                  <StatusTheme className="status__theme">
+
+                  <StatusTheme>
                     <input
                       type="radio"
                       name="radios"
@@ -191,7 +194,6 @@ export default function PopEditCard({ id }) {
                       Описание задачи
                     </label>
                     <FormBrowseArea
-                      className="form-browse__area"
                       name="text"
                       id="textArea01"
                       value={changeCard.description}
@@ -207,25 +209,19 @@ export default function PopEditCard({ id }) {
                 <Calendar selected={selected} setSelected={setSelected} />
               </PopBrowseWrap>
 
-              <PopBrowseButtons className="pop-browse__btn-edit">
-                <BrowseButtonGroup className="btn-group">
-                  <ButtonBackground
-                    className="btn-edit__edit _btn-bg _hover01"
-                    onClick={handleChange}
-                  >
+              <PopBrowseButtons>
+                <BrowseButtonGroup>
+                  <ButtonBackground onClick={handleChange}>
                     Сохранить
                   </ButtonBackground>
-                  <ButtonBordered className="btn-edit__edit _btn-bor _hover03">
+                  <ButtonBordered>
                     <Link to={`/card/${id}`}>Отменить</Link>
                   </ButtonBordered>
-                  <ButtonBordered
-                    className="btn-browse__delete _btn-bor _hover03"
-                    onClick={handleDelete}
-                  >
+                  <ButtonBordered onClick={handleDelete}>
                     Удалить задачу
                   </ButtonBordered>
                 </BrowseButtonGroup>
-                <ButtonBackground className="btn-edit__close _btn-bg _hover01">
+                <ButtonBackground>
                   <Link to={AppRoutes.MAIN}>Закрыть</Link>
                 </ButtonBackground>
               </PopBrowseButtons>

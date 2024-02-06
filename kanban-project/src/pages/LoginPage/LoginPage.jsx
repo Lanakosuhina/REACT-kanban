@@ -6,9 +6,11 @@ import useUser from "../../hooks/useUser";
 import Layout from "../../components/Layout";
 import {
   ContainerSignin,
+  ErrorText,
   Modal,
   ModalBlock,
   ModalBtnEnter,
+  ModalBtnErr,
   ModalFormGroup,
   ModalFormLogin,
   ModalInput,
@@ -19,6 +21,7 @@ import { GlobalStyle } from "../../Global.styled";
 
 export default function LoginPage() {
   const { login } = useUser();
+  const [hasError, setHasError] = useState(false);
   const [loginData, setLoginData] = useState({
     login: "",
     password: "",
@@ -26,11 +29,21 @@ export default function LoginPage() {
 
   function setAuth(loginData) {
     try {
+      if (loginData.login === "" || loginData.password === "") {
+        setHasError(true);
+        throw new Error(
+          "Введенные вами данные не распознаны. проверьте свой логин и пароль и повторите попытку входа."
+        );
+      }
       loginKanban(loginData).then((data) => {
         login(data.user);
       });
     } catch (error) {
-      alert(error.message);
+      setHasError(error.message);
+      console.error(error);
+      setTimeout(() => {
+        setHasError(false);
+      }, 2000); 
     }
   }
 
@@ -50,15 +63,13 @@ export default function LoginPage() {
 
   return (
     <>
-     <GlobalStyle />
+      <GlobalStyle />
       <Layout>
         <Wrapper>
           <ContainerSignin>
             <Modal>
               <ModalBlock>
-                <ModalTitle>
-                  Вход
-                </ModalTitle>
+                <ModalTitle>Вход</ModalTitle>
                 <ModalFormLogin id="formLogIn" action="#">
                   <ModalInput
                     type="text"
@@ -76,15 +87,30 @@ export default function LoginPage() {
                     value={loginData.password}
                     onChange={onPasswordChange}
                   />
-                  <ModalBtnEnter
-                    id="btnEnter"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      setAuth(loginData);
-                    }}
-                  >
-                    Войти
-                  </ModalBtnEnter>
+                  {hasError ? (
+                    <>
+                      <ErrorText>{hasError}</ErrorText>
+                      <ModalBtnErr
+                        disabled
+                        onClick={(event) => {
+                          event.preventDefault();
+                          setAuth(loginData);
+                        }}
+                      >
+                        Войти
+                      </ModalBtnErr>
+                    </>
+                  ) : (
+                    <ModalBtnEnter
+                      id="btnEnter"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setAuth(loginData);
+                      }}
+                    >
+                      Войти
+                    </ModalBtnEnter>
+                  )}
                   <ModalFormGroup>
                     <p>Нужно зарегистрироваться?</p>
                     <Link to={AppRoutes.REGISTER}>Регистрируйтесь здесь</Link>

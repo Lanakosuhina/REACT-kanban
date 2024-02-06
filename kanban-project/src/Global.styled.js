@@ -95,6 +95,22 @@ body {
 
 }
 
+._orange {
+  background-color: #ffe4c2;
+  color: #ff6d00 ;
+}
+
+
+._green {
+  background-color: #b4fdd1;
+  color: #06b16e;
+}
+
+._purple {
+  background-color: #e9d4ff;
+  color: #9a48f1;
+}
+
 ._gray {
   background: #94A6BE;
   color: #FFFFFF;
