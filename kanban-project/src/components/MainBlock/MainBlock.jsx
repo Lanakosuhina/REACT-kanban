@@ -1,4 +1,4 @@
-import { statusList } from "../../data";
+import { statusList } from "../../lib/data.js";
 import useTasks from "../../hooks/useTasks.jsx";
 import Column from "../Column/Column";
 import { Main, MainStyledBlock, MainContent } from "./MainBlock.styled.js";

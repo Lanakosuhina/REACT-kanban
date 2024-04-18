@@ -1,28 +1,35 @@
-
 import DropDown from "../DropDown/DropDown";
 import {
   HeaderBlock,
   HeaderWrapper,
-  LogoDark,
-  LogoLight,
+  LogoLink,
 } from "./Header.styled";
+import useGlobal from "../../hooks/useGlobal";
+import { useEffect, useState } from "react";
+import { AppRoutes } from "../../lib/approutes";
 
 function Header() {
+  const { theme } = useGlobal();
+  const [logo, setLogo] = useState("/images/logo.png");
+
+  useEffect(() => {
+    window.localStorage.setItem("theme", theme);
+
+    if (theme === "light") {
+      setLogo("/images/logo.png");
+    } else {
+      setLogo("/images/logo_dark.png");
+    }
+  }, [theme]);
+
   return (
     <HeaderWrapper>
       <div className="container">
         <HeaderBlock>
-          <LogoLight className="_show _light">
-            <a href="" target="_self">
-              <img src="/images/logo.png" alt="logo" />
-            </a>
-          </LogoLight>
-          <LogoDark className="_dark">
-            <a href="" target="_self">
-              <img src="/images/logo_dark.png" alt="logo" />
-            </a>
-          </LogoDark>
-            <DropDown />
+          <LogoLink to={AppRoutes.MAIN}>
+            <img src={logo} alt="logo" />
+          </LogoLink>
+          <DropDown />
         </HeaderBlock>
       </div>
     </HeaderWrapper>

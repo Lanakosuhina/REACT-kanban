@@ -3,7 +3,23 @@ import Calendar from "../Calendar/Calendar";
 import { Link, useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../lib/approutes";
 import { GlobalStyle } from "../../Global.styled";
-import { GlobalNewCard } from "./PopNewCard.styled";
+import {
+  CategoriesContainer,
+  CategoriesP,
+  CategoriesTheme,
+  FormNewArea,
+  FormNewBlock,
+  FormNewCreateButton,
+  FormNewInput,
+  PopNewCardBlock,
+  PopNewCardClose,
+  PopNewCardContainer,
+  PopNewCardContent,
+  PopNewCardDiv,
+  PopNewCardForm,
+  PopNewCardTtl,
+  PopNewCardWrap,
+} from "./PopNewCard.styled";
 import { addTask } from "../../API";
 
 export default function PopNewCard() {
@@ -34,28 +50,21 @@ export default function PopNewCard() {
   return (
     <>
       <GlobalStyle />
-      <GlobalNewCard />
-      <div className="pop-new-card" id="popNewCard">
-        <div className="pop-new-card__container">
-          <div className="pop-new-card__block">
-            <div className="pop-new-card__content">
-              <h3 className="pop-new-card__ttl">Создание задачи</h3>
-              <Link to={AppRoutes.MAIN} className="pop-new-card__close">
-                {" "}
-                &#10006;
-              </Link>
-              <div className="pop-new-card__wrap">
-                <form
-                  className="pop-new-card__form form-new"
-                  id="formNewCard"
-                  action="#"
-                >
-                  <div className="form-new__block">
+      <PopNewCardDiv id="popNewCard">
+        <PopNewCardContainer>
+          <PopNewCardBlock>
+            <PopNewCardContent>
+              <PopNewCardTtl>Создание задачи</PopNewCardTtl>
+              <PopNewCardClose>
+                <Link to={AppRoutes.MAIN}> &#10006;</Link>
+              </PopNewCardClose>
+              <PopNewCardWrap>
+                <PopNewCardForm id="formNewCard" action="#">
+                  <FormNewBlock>
                     <label htmlFor="formTitle" className="subttl">
                       Название задачи
                     </label>
-                    <input
-                      className="form-new__input"
+                    <FormNewInput
                       type="text"
                       name="name"
                       id="formTitle"
@@ -66,13 +75,12 @@ export default function PopNewCard() {
                         setNewCard({ ...newCard, title: e.target.value })
                       }
                     />
-                  </div>
-                  <div className="form-new__block">
+                  </FormNewBlock>
+                  <FormNewBlock>
                     <label htmlFor="textArea" className="subttl">
                       Описание задачи
                     </label>
-                    <textarea
-                      className="form-new__area"
+                    <FormNewArea
                       name="text"
                       id="textArea"
                       placeholder="Введите описание задачи..."
@@ -80,63 +88,63 @@ export default function PopNewCard() {
                       onChange={(e) =>
                         setNewCard({ ...newCard, description: e.target.value })
                       }
-                    ></textarea>
-                  </div>
-                </form>
+                    ></FormNewArea>
+                  </FormNewBlock>
+                </PopNewCardForm>
                 <Calendar selected={selected} setSelected={setSelected} />
-              </div>
-              <div className="pop-new-card__categories categories prod_checbox">
-                <p className="categories__p subttl">Категория</p>
-                <div className="radio-toolbar categories__theme _orange">
+              </PopNewCardWrap>
+              <CategoriesContainer className="pop-new-card__categories prod_checbox">
+                <CategoriesP className="subttl">Категория</CategoriesP>
+                <CategoriesTheme className="_orange">
                   <input
                     type="radio"
+                    id="web-design"
                     name="radios"
                     className="_orange"
                     value="Web Design"
+                    checked={newCard.topic === "Web Design"}
                     onChange={(e) =>
                       setNewCard({ ...newCard, topic: e.target.value })
                     }
                   />
-                  <label htmlFor="radio1">Web Design</label>
-                </div>
-                <div className="radio-toolbar categories__theme _green">
+                  <label htmlFor="web-design">Web Design</label>
+                </CategoriesTheme>
+                <CategoriesTheme className="_green">
                   <input
                     type="radio"
-                    id="radio2"
+                    id="research"
                     name="radios"
                     className="_green"
                     value="Research"
+                    checked={newCard.topic === "Research"}
                     onChange={(e) =>
                       setNewCard({ ...newCard, topic: e.target.value })
                     }
                   />
-                  <label htmlFor="radio2">Research</label>
-                </div>
-                <div className="radio-toolbar categories__theme _purple">
+                  <label htmlFor="research">Research</label>
+                </CategoriesTheme>
+                <CategoriesTheme className="_purple">
                   <input
                     type="radio"
-                    id="radio3"
+                    id="copywriting"
                     name="radios"
                     className="_purple"
                     value="Copywriting"
+                    checked={newCard.topic === "Copywriting"}
                     onChange={(e) =>
                       setNewCard({ ...newCard, topic: e.target.value })
                     }
                   />
-                  <label htmlFor="radio3">Copywriting</label>
-                </div>
-              </div>
-              <button
-                className="form-new__create _hover01"
-                id="btnCreate"
-                onClick={onBtnSubmit}
-              >
+                  <label htmlFor="copywriting">Copywriting</label>
+                </CategoriesTheme>
+              </CategoriesContainer>
+              <FormNewCreateButton id="btnCreate" onClick={onBtnSubmit}>
                 Создать задачу
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+              </FormNewCreateButton>
+            </PopNewCardContent>
+          </PopNewCardBlock>
+        </PopNewCardContainer>
+      </PopNewCardDiv>
     </>
   );
 }

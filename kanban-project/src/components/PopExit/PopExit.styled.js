@@ -27,18 +27,18 @@ export const PopExitContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${(props) => props.theme.exitBack};
 `;
 
 export const PopExitBlock = styled.div`
   display: block;
   margin: 0 auto;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.backColor};
   max-width: 370px;
   width: 100%;
   padding: 50px 60px;
   border-radius: 10px;
-  border: 0.7px solid #d4dbe5;
+  border: ${props => props.theme.border};
   box-shadow: 0px 4px 67px -12px rgba(0, 0, 0, 0.13);
 
   @media only screen and (max-width: ${breakpoints.sm}px) {
@@ -48,6 +48,7 @@ export const PopExitBlock = styled.div`
 
 export const PopExitTtl = styled.div`
   h2 {
+    color: ${props => props.theme.color};
     text-align: center;
     font-size: 20px;
     font-weight: 700;
